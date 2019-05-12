@@ -1,12 +1,10 @@
-package com.example.carsharingbackend.namedbean.grid;
+package com.example.carsharingbackend.carattributes.grid;
 
 import com.example.carsharingbackend.common.AbstractPresenter;
 import com.example.carsharingbackend.common.IModel;
 import com.example.carsharingbackend.common.IView;
 import com.example.carsharingbackend.entity.common.NamedBean;
-import com.example.carsharingbackend.namedbean.grid.impl.GridModelImpl;
-import com.example.carsharingbackend.namedbean.grid.impl.GridViewImpl;
-import com.example.carsharingbackend.namedbean.editor.EditorPresenter;
+import com.example.carsharingbackend.carattributes.editor.EditorPresenter;
 import com.example.carsharingbackend.services.NamedBeanService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -14,13 +12,17 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.selection.SelectionListener;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.flow.spring.annotation.UIScope;
 
 import java.util.Collection;
 
-@org.springframework.stereotype.Component
-public class GridPresenter extends AbstractPresenter<GridPresenter.IGridModel, GridPresenter.IGridView> {
 
-    public interface IGridModel extends IModel {
+@SpringComponent
+@UIScope
+public class GridPresenter extends AbstractPresenter<GridPresenter.GridModel, GridPresenter.GridView> {
+
+    public interface GridModel extends IModel {
         void setService(NamedBeanService s);
 
         Collection<NamedBean> getAll();
@@ -31,7 +33,7 @@ public class GridPresenter extends AbstractPresenter<GridPresenter.IGridModel, G
 
     }
 
-    public interface IGridView extends IView {
+    public interface GridView extends IView {
         void setData(Collection<NamedBean> list);
 
         TextField getFilter();
@@ -47,15 +49,16 @@ public class GridPresenter extends AbstractPresenter<GridPresenter.IGridModel, G
     private EditorPresenter editorPresenter;
 
 
-    public GridPresenter() {
-        super(new GridModelImpl(), new GridViewImpl());
-        editorPresenter = new EditorPresenter();
+    public GridPresenter(GridModel model, GridView view, EditorPresenter p) {
+        super(model,view);
+        editorPresenter = p;
         bind();
     }
 
     public void updateService(NamedBeanService service) {
         model.setService(service);
         editorPresenter.updateService(service);
+        view.getFilter().clear();
         view.setData(model.getAll());
     }
 

@@ -1,7 +1,7 @@
-package com.example.carsharingbackend.namedbean.grid.impl;
+package com.example.carsharingbackend.carattributes.grid.impl;
 
 import com.example.carsharingbackend.entity.common.NamedBean;
-import com.example.carsharingbackend.namedbean.grid.GridPresenter;
+import com.example.carsharingbackend.carattributes.grid.GridPresenter;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -11,12 +11,15 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.selection.SelectionListener;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.flow.spring.annotation.UIScope;
 import lombok.Getter;
 
 import java.util.Collection;
 
-
-public class GridViewImpl extends VerticalLayout implements GridPresenter.IGridView {
+@SpringComponent
+@UIScope
+public class GridViewImpl extends VerticalLayout implements GridPresenter.GridView {
     @Getter
     private TextField filter;
     @Getter

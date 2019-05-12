@@ -2,7 +2,7 @@ package com.example.carsharingbackend.view;
 
 
 
-import com.example.carsharingbackend.namedbean.grid.GridPresenter;
+import com.example.carsharingbackend.carattributes.grid.GridPresenter;
 import com.example.carsharingbackend.services.NamedBeanService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -14,7 +14,7 @@ import com.vaadin.flow.router.Route;
 @Route("admin")
 public class AdminView extends VerticalLayout {
 
-    private GridPresenter.IGridModel model;
+    private GridPresenter.GridModel model;
     //private ListBox list = new NavigationViewImpl();
     private MainView mainView;
     private NamedBeanService currentService;
@@ -25,7 +25,7 @@ public class AdminView extends VerticalLayout {
     private Button help = new Button("Help");
 
 
-    public AdminView(GridPresenter.IGridModel model, MainView view) {
+    public AdminView(GridPresenter.GridModel model, MainView view) {
         this.model = model;
         this.mainView = view;
         buildMainLayout();

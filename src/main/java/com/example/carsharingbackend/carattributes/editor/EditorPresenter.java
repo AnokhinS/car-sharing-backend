@@ -1,18 +1,19 @@
-package com.example.carsharingbackend.namedbean.editor;
+package com.example.carsharingbackend.carattributes.editor;
 
 import com.example.carsharingbackend.common.AbstractPresenter;
 import com.example.carsharingbackend.common.IModel;
 import com.example.carsharingbackend.common.IView;
 import com.example.carsharingbackend.entity.common.NamedBean;
-import com.example.carsharingbackend.namedbean.editor.impl.EditorModelImpl;
-import com.example.carsharingbackend.namedbean.editor.impl.EditorViewImpl;
 import com.example.carsharingbackend.services.NamedBeanService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.KeyNotifier;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.flow.spring.annotation.UIScope;
 
-
+@SpringComponent
+@UIScope
 public class EditorPresenter extends AbstractPresenter<EditorPresenter.EditorModel, EditorPresenter.EditorView> {
 
     public interface EditorModel extends IModel{
@@ -28,8 +29,8 @@ public class EditorPresenter extends AbstractPresenter<EditorPresenter.EditorMod
         NamedBean getBean();
     }
 
-    public EditorPresenter() {
-        super(new EditorModelImpl(),new EditorViewImpl());
+    public EditorPresenter(EditorModel model, EditorView view) {
+        super(model, view);
         bind();
     }
 

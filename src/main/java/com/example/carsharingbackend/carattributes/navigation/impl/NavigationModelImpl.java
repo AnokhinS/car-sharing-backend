@@ -1,9 +1,8 @@
-package com.example.carsharingbackend.namedbean.navigation.impl;
+package com.example.carsharingbackend.carattributes.navigation.impl;
 
 import com.example.carsharingbackend.common.AttributeProvider;
 import com.example.carsharingbackend.common.AttributeService;
-import com.example.carsharingbackend.namedbean.navigation.NavigationPresenter;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.carsharingbackend.carattributes.navigation.NavigationPresenter;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

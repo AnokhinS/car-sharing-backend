@@ -1,4 +1,4 @@
-package com.example.carsharingbackend.namedbean.main;
+package com.example.carsharingbackend.carattributes.main;
 
 import com.example.carsharingbackend.common.AbstractPresenter;
 import com.example.carsharingbackend.common.AttributeProvider;
@@ -7,14 +7,15 @@ import com.example.carsharingbackend.common.IView;
 import com.example.carsharingbackend.entity.carinfo.Firm;
 import com.example.carsharingbackend.entity.carinfo.Transmission;
 import com.example.carsharingbackend.entity.carinfo.Type;
-import com.example.carsharingbackend.namedbean.grid.GridPresenter;
-import com.example.carsharingbackend.namedbean.main.impl.MainViewImpl;
-import com.example.carsharingbackend.namedbean.navigation.NavigationPresenter;
+import com.example.carsharingbackend.carattributes.grid.GridPresenter;
+import com.example.carsharingbackend.carattributes.navigation.NavigationPresenter;
 import com.example.carsharingbackend.services.NamedBeanService;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.flow.spring.annotation.UIScope;
 
-
-@org.springframework.stereotype.Component
+@SpringComponent
+@UIScope
 public class MainPresenter extends AbstractPresenter<MainPresenter.MainModel, MainPresenter.MainView> {
 
     public interface MainModel extends IModel {
@@ -35,9 +36,9 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.MainModel, Ma
     private GridPresenter gridPresenter;
     private AttributeProvider attributeProvider;
 
-    public MainPresenter(MainModel model, NavigationPresenter navPres, AttributeProvider attributeProvider) {
-        super(model, new MainViewImpl());
-        gridPresenter = new GridPresenter();
+    public MainPresenter(MainModel model,MainView view,GridPresenter gp, NavigationPresenter navPres, AttributeProvider attributeProvider) {
+        super(model, view);
+        gridPresenter = gp;
         navigationPresenter = navPres;
         this.attributeProvider = attributeProvider;
         bind();

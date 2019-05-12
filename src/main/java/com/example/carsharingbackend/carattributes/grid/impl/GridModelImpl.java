@@ -1,13 +1,15 @@
-package com.example.carsharingbackend.namedbean.grid.impl;
+package com.example.carsharingbackend.carattributes.grid.impl;
 
 import com.example.carsharingbackend.entity.common.NamedBean;
-import com.example.carsharingbackend.namedbean.grid.GridPresenter;
+import com.example.carsharingbackend.carattributes.grid.GridPresenter;
 import com.example.carsharingbackend.services.NamedBeanService;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
-public class GridModelImpl implements GridPresenter.IGridModel {
+@Component
+public class GridModelImpl implements GridPresenter.GridModel {
 
     @Setter
     private NamedBeanService service;

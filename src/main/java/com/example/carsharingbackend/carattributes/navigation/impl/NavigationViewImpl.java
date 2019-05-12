@@ -1,17 +1,20 @@
-package com.example.carsharingbackend.namedbean.navigation.impl;
+package com.example.carsharingbackend.carattributes.navigation.impl;
 
 import com.example.carsharingbackend.common.AttributeService;
-import com.example.carsharingbackend.namedbean.navigation.NavigationPresenter;
+import com.example.carsharingbackend.carattributes.navigation.NavigationPresenter;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.listbox.ListBox;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.shared.Registration;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.flow.spring.annotation.UIScope;
 
 import java.util.List;
 
-
+@SpringComponent
+@UIScope
 public class NavigationViewImpl extends VerticalLayout implements NavigationPresenter.NavigationView {
     private ListBox<AttributeService> listOfLinks = new ListBox<>();
 

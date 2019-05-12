@@ -1,6 +1,6 @@
-package com.example.carsharingbackend.namedbean.main.impl;
+package com.example.carsharingbackend.carattributes.main.impl;
 
-import com.example.carsharingbackend.namedbean.main.MainPresenter;
+import com.example.carsharingbackend.carattributes.main.MainPresenter;
 import com.example.carsharingbackend.services.NamedBeanService;
 import lombok.Getter;
 import org.springframework.stereotype.Component;
