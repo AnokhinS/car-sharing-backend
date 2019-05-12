@@ -24,4 +24,9 @@ public class Transmission implements NamedBean {
     public Transmission(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

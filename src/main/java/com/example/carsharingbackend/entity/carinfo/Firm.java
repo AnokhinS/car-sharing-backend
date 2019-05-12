@@ -2,6 +2,7 @@ package com.example.carsharingbackend.entity.carinfo;
 
 import com.example.carsharingbackend.entity.common.NamedBean;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -25,5 +26,8 @@ public class Firm implements NamedBean {
         this.name = name;
     }
 
-
+    @Override
+    public String toString(){
+        return name;
+    }
 }

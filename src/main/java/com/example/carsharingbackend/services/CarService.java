@@ -5,6 +5,8 @@ import com.example.carsharingbackend.exceptions.ObjectNotFoundException;
 import com.example.carsharingbackend.repositories.CarRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+
 
 @Service
 public class CarService {
@@ -14,7 +16,7 @@ public class CarService {
         this.repository = repository;
     }
 
-    public Iterable<Car> findAll() {
+    public Collection<Car> findAll() {
         return repository.findAll();
     }
 

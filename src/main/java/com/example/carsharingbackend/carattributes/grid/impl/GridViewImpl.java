@@ -24,7 +24,6 @@ public class GridViewImpl extends VerticalLayout implements GridPresenter.GridVi
     private TextField filter;
     @Getter
     private Button addNewBtn;
-    @Getter
     private Grid<NamedBean> grid;
     private VerticalLayout editor;
 

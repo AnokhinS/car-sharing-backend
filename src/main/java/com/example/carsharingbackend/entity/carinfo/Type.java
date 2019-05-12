@@ -25,4 +25,9 @@ public class Type implements NamedBean {
     public Type(@Length(min = 1, message = "Поле не может быть пустым") String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }
