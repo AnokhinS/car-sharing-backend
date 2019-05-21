@@ -33,5 +33,6 @@ public class Order {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate returned;
 
-
+    public Order() {
+    }
 }

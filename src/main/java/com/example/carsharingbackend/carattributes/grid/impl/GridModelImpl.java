@@ -28,4 +28,18 @@ public class GridModelImpl implements GridPresenter.GridModel {
     public NamedBean newBean() {
         return service.newBean();
     }
+
+    @Override
+    public void save(NamedBean bean) {
+        if (bean.getId() == 0) {
+            service.create(bean);
+        } else {
+            service.update(bean);
+        }
+    }
+
+    @Override
+    public void delete(NamedBean bean) {
+        service.delete(bean);
+    }
 }

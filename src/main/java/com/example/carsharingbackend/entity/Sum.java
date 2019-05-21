@@ -13,4 +13,6 @@ public class Sum {
     @Column(name = "sum")
     private int sum;
 
+    public Sum() {
+    }
 }

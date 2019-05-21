@@ -23,4 +23,6 @@ public class Message {
 
     private Timestamp date;
 
+    public Message() {
+    }
 }

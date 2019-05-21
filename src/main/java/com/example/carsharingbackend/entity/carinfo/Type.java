@@ -26,6 +26,11 @@ public class Type implements NamedBean {
         this.name = name;
     }
 
+    public Type(int i) {
+        id=i;
+    }
+
+
     @Override
     public String toString(){
         return name;

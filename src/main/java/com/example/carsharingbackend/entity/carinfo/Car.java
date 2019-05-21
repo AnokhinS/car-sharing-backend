@@ -12,6 +12,8 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "car_id")
     private long id;
+    @Column(name = "description")
+    private String description;
     @ManyToOne
     @JoinColumn(name = "firm_id")
     private Firm firm;
@@ -24,4 +26,14 @@ public class Car {
     @Column(name = "cost_per_day")
     private int costPerDay;
 
+    public Car() {
+    }
+
+    public Car(String desc, Firm firm, Type type, Transmission transmission, int costPerDay) {
+        this.description = desc;
+        this.firm = firm;
+        this.type = type;
+        this.transmission = transmission;
+        this.costPerDay = costPerDay;
+    }
 }

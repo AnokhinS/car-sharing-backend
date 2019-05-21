@@ -21,6 +21,10 @@ public class Firm implements NamedBean {
     public Firm() {
     }
 
+    public Firm(int i){
+        id=i;
+    }
+
 
     public Firm(String name) {
         this.name = name;
@@ -30,4 +34,5 @@ public class Firm implements NamedBean {
     public String toString(){
         return name;
     }
+
 }
