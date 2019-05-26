@@ -46,12 +46,6 @@ public class CarSharingBackendApplication {
             carRepository.save(new CarEntity("опис3", new FirmEntity(3), new TypeEntity(1), new TransmissionEntity(1), 70));
 
 
-//            RestTemplate restTemplate = new RestTemplate();
-//            String fooResourceUrl
-//                    = "http://localhost:8080/restapi/cars";
-//            ResponseEntity<String> response
-//                    = restTemplate.getForEntity(fooResourceUrl + "?list=costPerDay>60", String.class);
-//            System.out.println(response.getBody());
         };
 
 

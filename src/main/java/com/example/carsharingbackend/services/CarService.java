@@ -23,7 +23,6 @@ public class CarService {
     }
 
     public Collection<CarEntity> findAll(Specification<CarEntity> spec) {
-
         return repository.findAll(spec);
     }
 

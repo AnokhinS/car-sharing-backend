@@ -9,7 +9,10 @@ import com.example.carsharingbackend.specifications.CarSpecificationsBuilder;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,32 +29,25 @@ public class RestCarController {
     }
 
     @GetMapping
-    public Collection<CarEntity> list(@RequestParam(value = "search", required = false) String search) {
-        search="and"+search;
+    public Collection<CarEntity> list(@RequestParam(value = "costFrom", required = false) String costFrom, @RequestParam(value = "costTo", required = false) String costTo,
+                                      @RequestParam(value = "firms", required = false) String firms) {
         CarSpecificationsBuilder builder = new CarSpecificationsBuilder();
-        Pattern pattern = Pattern.compile("(and|or)(\\w|.+?)([:<>])(?U)(\\w+?),");
-        Matcher matcher = pattern.matcher(search + ",");
-        while (matcher.find()) {
-            String g1=matcher.group(1);
-            String g2=matcher.group(2);
-            String g3=matcher.group(3);
-            String g4=matcher.group(4);
-
-//            builder.with(g1, g2, g3, g4);
+        if(costFrom!=null){
+            builder.with("costPerDay", ">", costFrom,false);
         }
+        if(costTo!=null){
+            builder.with("costPerDay", "<", costTo,false);
+        }
+        if(firms!=null){
+            List<String> flist= Arrays.asList(firms.split(","));
+                        flist.forEach(e->{
+                            builder.with("firm.name", "=", e,true);
+            });
+        }
+
         Specification<CarEntity> spec = builder.build();
         return service.findAll(spec);
     }
-
-    @GetMapping("test")
-    public Collection<CarEntity> test(@RequestBody CarFilter filter) {
-        CarSpecificationsBuilder builder = new CarSpecificationsBuilder();
-        builder.with("firms","in",filter.getFirms());
-
-        Specification<CarEntity> spec = builder.build();
-        return service.findAll(spec);
-    }
-
 
     @GetMapping("{id}")
     public CarEntity get(@PathVariable long id) {
