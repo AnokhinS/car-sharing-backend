@@ -1,9 +1,8 @@
 package com.example.carsharingbackend.carattributes.grid.impl;
 
-import com.example.carsharingbackend.entity.common.NamedBean;
 import com.example.carsharingbackend.carattributes.grid.GridPresenter;
-import com.example.carsharingbackend.services.NamedBeanService;
-import lombok.Setter;
+import com.example.carsharingbackend.entity.common.NamedBean;
+import com.example.carsharingbackend.restClients.RestNamedBeanClient;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -11,35 +10,34 @@ import java.util.Collection;
 @Component
 public class GridModelImpl implements GridPresenter.GridModel {
 
-    @Setter
-    private NamedBeanService service;
-
-    @Override
-    public Collection<NamedBean> getAll() {
-        return service.getAllOrdered();
-    }
+    private RestNamedBeanClient client;
 
     @Override
     public Collection<NamedBean> getAllStartsWith(String str) {
-        return service.getAllStartsWith(str);
+        return client.list(str);
     }
 
     @Override
     public NamedBean newBean() {
-        return service.newBean();
+        return client.newBean();
     }
 
     @Override
     public void save(NamedBean bean) {
         if (bean.getId() == 0) {
-            service.create(bean);
+            client.create(bean);
         } else {
-            service.update(bean);
+            client.update(bean.getId(), bean);
         }
     }
 
     @Override
+    public void setRestNamedBeanClient(RestNamedBeanClient client) {
+        this.client=client;
+    }
+
+    @Override
     public void delete(NamedBean bean) {
-        service.delete(bean);
+        client.delete(bean.getId());
     }
 }

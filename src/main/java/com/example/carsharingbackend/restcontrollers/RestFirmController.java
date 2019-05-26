@@ -1,7 +1,7 @@
 package com.example.carsharingbackend.restcontrollers;
 
 
-import com.example.carsharingbackend.entity.carinfo.Firm;
+import com.example.carsharingbackend.entity.carinfo.FirmEntity;
 import com.example.carsharingbackend.services.FirmService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,28 +17,29 @@ public class RestFirmController {
     }
 
     @GetMapping
-    public Iterable<Firm> list() {
-        return service.getAllOrdered();
+    public Iterable<FirmEntity> list(@RequestParam(required = false) String startsWith) {
+        return service.list(startsWith);
     }
 
     @GetMapping("{id}")
-    public Firm get(@PathVariable int id) {
+    public FirmEntity get(@PathVariable long id) {
         return service.get(id);
     }
 
     @PostMapping
-    public Firm add(@RequestBody Firm firm) {
+    public FirmEntity add(@RequestBody FirmEntity firm) {
         return service.create(firm);
     }
 
-    @PutMapping
-    public Firm update(@RequestBody Firm firm) {
-        return service.update(firm);
+    @PutMapping("{id}")
+    public void update(@PathVariable long id,@RequestBody FirmEntity firm) {
+        firm.setId(id);
+        service.update(firm);
     }
 
-    @DeleteMapping
-    public void delete(@RequestBody Firm object) {
-        service.delete(object);
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable long id) {
+        service.delete(id);
     }
 
 }

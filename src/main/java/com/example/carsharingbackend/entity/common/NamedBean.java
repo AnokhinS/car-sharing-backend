@@ -1,11 +1,12 @@
 package com.example.carsharingbackend.entity.common;
 
 public interface NamedBean {
-    public long getId();
+    long getId();
 
-    public void setId(long id);
+    void setId(long id);
 
-    public String getName();
+    String getName();
 
-    public void setName(String name);
+    void setName(String name);
+
 }

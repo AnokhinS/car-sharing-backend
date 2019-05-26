@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "car")
 @Data
-public class Car {
+public class CarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "car_id")
@@ -16,20 +16,20 @@ public class Car {
     private String description;
     @ManyToOne
     @JoinColumn(name = "firm_id")
-    private Firm firm;
+    private FirmEntity firm;
     @ManyToOne
     @JoinColumn(name = "type_id")
-    private Type type;
+    private TypeEntity type;
     @ManyToOne
     @JoinColumn(name = "transmission_id")
-    private Transmission transmission;
+    private TransmissionEntity transmission;
     @Column(name = "cost_per_day")
     private int costPerDay;
 
-    public Car() {
+    public CarEntity() {
     }
 
-    public Car(String desc, Firm firm, Type type, Transmission transmission, int costPerDay) {
+    public CarEntity(String desc, FirmEntity firm, TypeEntity type, TransmissionEntity transmission, int costPerDay) {
         this.description = desc;
         this.firm = firm;
         this.type = type;

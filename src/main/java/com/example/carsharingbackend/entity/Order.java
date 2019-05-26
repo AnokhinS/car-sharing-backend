@@ -1,6 +1,6 @@
 package com.example.carsharingbackend.entity;
 
-import com.example.carsharingbackend.entity.carinfo.Car;
+import com.example.carsharingbackend.entity.carinfo.CarEntity;
 import com.example.carsharingbackend.entity.userinfo.User;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +21,7 @@ public class Order {
     private User user;
     @ManyToOne
     @JoinColumn(name = "car_id")
-    private Car car;
+    private CarEntity car;
 
     @Column(name = "start_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

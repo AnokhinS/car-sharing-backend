@@ -1,7 +1,7 @@
 package com.example.carsharingbackend.restcontrollers;
 
 
-import com.example.carsharingbackend.entity.carinfo.Type;
+import com.example.carsharingbackend.entity.carinfo.TypeEntity;
 import com.example.carsharingbackend.exceptions.ObjectAlreadyExistsException;
 import com.example.carsharingbackend.exceptions.ObjectNotFoundException;
 import com.example.carsharingbackend.services.TypeService;
@@ -19,13 +19,13 @@ public class RestMessageController {
     }
 
     @GetMapping
-    public Iterable<Type> list() {
+    public Iterable<TypeEntity> list() {
         return service.getAllOrdered();
     }
 
     @GetMapping("{id}")
-    public Type get(@PathVariable int id) {
-        Type foundType = service.get(id);
+    public TypeEntity get(@PathVariable int id) {
+        TypeEntity foundType = service.get(id);
         if (foundType != null)
             return foundType;
         else
@@ -33,7 +33,7 @@ public class RestMessageController {
     }
 
     @PostMapping
-    public Type add(@RequestBody Type type) throws RuntimeException {
+    public TypeEntity add(@RequestBody TypeEntity type) throws RuntimeException {
         try {
             return service.create(type);
         } catch (Exception e) {
@@ -43,8 +43,8 @@ public class RestMessageController {
     }
 
     @PutMapping
-    public Type update(@RequestBody Type type) throws RuntimeException {
-        Type found = service.get(type.getId());
+    public TypeEntity update(@RequestBody TypeEntity type) throws RuntimeException {
+        TypeEntity found = service.get(type.getId());
         if (found == null)
             throw new ObjectNotFoundException();
         try {
@@ -56,11 +56,11 @@ public class RestMessageController {
     }
 
     @DeleteMapping
-    public void delete(@RequestBody Type object) {
-        Type found = service.get(object.getId());
+    public void delete(@RequestBody TypeEntity object) {
+        TypeEntity found = service.get(object.getId());
         if (found == null)
             throw new ObjectNotFoundException();
-        service.delete(object);
+        service.delete(object.getId());
     }
 
 }

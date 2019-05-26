@@ -24,6 +24,13 @@ public abstract class NamedBeanService<E extends NamedBean> {
         return repository.findByNameStartsWithIgnoreCaseOrderByName(startsWith);
     }
 
+    public Collection<E> list(String startsWith) {
+        if(startsWith==null){
+            return getAllOrdered();
+        }
+        return getAllStartsWith(startsWith);
+    }
+
     public abstract NamedBean newBean();
 
     public E get(long id) {
@@ -59,8 +66,8 @@ public abstract class NamedBeanService<E extends NamedBean> {
         return repository.save(object);
     }
 
-    public void delete(E object) {
-        repository.delete(get(object.getId()));
+    public void delete(long id) {
+        repository.deleteById(id);
     }
 
 }

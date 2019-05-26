@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "transmission")
 @Data
-public class Transmission implements NamedBean {
+public class TransmissionEntity implements NamedBean {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "transmission_id")
@@ -18,14 +18,14 @@ public class Transmission implements NamedBean {
     @Column(name = "name")
     private String name;
 
-    public Transmission() {
+    public TransmissionEntity() {
     }
 
-    public Transmission(String name) {
+    public TransmissionEntity(String name) {
         this.name = name;
     }
 
-    public Transmission(int i) {
+    public TransmissionEntity(int i) {
         id=i;
     }
 
@@ -34,4 +34,5 @@ public class Transmission implements NamedBean {
     public String toString(){
         return name;
     }
+
 }

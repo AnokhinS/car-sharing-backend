@@ -1,18 +1,15 @@
 package com.example.carsharingbackend.restcontrollers;
 
 
-import com.example.carsharingbackend.entity.carinfo.Car;
+import com.example.carsharingbackend.entity.carinfo.CarEntity;
 import com.example.carsharingbackend.exceptions.ObjectNotFoundException;
 import com.example.carsharingbackend.services.CarService;
+import com.example.carsharingbackend.specifications.CarFilter;
 import com.example.carsharingbackend.specifications.CarSpecificationsBuilder;
-import jdk.nashorn.internal.objects.annotations.Getter;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Nullable;
 import java.util.Collection;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,7 +26,7 @@ public class RestCarController {
     }
 
     @GetMapping
-    public Collection<Car> list(@RequestParam(value = "list", required = false) String search) {
+    public Collection<CarEntity> list(@RequestParam(value = "search", required = false) String search) {
         search="and"+search;
         CarSpecificationsBuilder builder = new CarSpecificationsBuilder();
         Pattern pattern = Pattern.compile("(and|or)(\\w|.+?)([:<>])(?U)(\\w+?),");
@@ -40,26 +37,35 @@ public class RestCarController {
             String g3=matcher.group(3);
             String g4=matcher.group(4);
 
-            builder.with(g1, g2, g3, g4);
+//            builder.with(g1, g2, g3, g4);
         }
-        Specification<Car> spec = builder.build();
+        Specification<CarEntity> spec = builder.build();
+        return service.findAll(spec);
+    }
+
+    @GetMapping("test")
+    public Collection<CarEntity> test(@RequestBody CarFilter filter) {
+        CarSpecificationsBuilder builder = new CarSpecificationsBuilder();
+        builder.with("firms","in",filter.getFirms());
+
+        Specification<CarEntity> spec = builder.build();
         return service.findAll(spec);
     }
 
 
     @GetMapping("{id}")
-    public Car get(@PathVariable long id) {
+    public CarEntity get(@PathVariable long id) {
         return service.get(id);
     }
 
     @PostMapping
-    public Car add(@RequestBody Car car) {
+    public CarEntity add(@RequestBody CarEntity car) {
         return service.create(car);
     }
 
     @PutMapping
-    public Car update(@RequestBody Car car) {
-        Car found = service.get(car.getId());
+    public CarEntity update(@RequestBody CarEntity car) {
+        CarEntity found = service.get(car.getId());
         if (found == null)
             throw new ObjectNotFoundException();
         try {
@@ -71,8 +77,8 @@ public class RestCarController {
     }
 
     @DeleteMapping
-    public void delete(@RequestBody Car object) {
-        Car found = service.get(object.getId());
+    public void delete(@RequestBody CarEntity object) {
+        CarEntity found = service.get(object.getId());
         if (found == null)
             throw new ObjectNotFoundException();
         service.delete(object);

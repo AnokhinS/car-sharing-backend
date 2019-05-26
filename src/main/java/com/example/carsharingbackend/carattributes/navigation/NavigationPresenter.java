@@ -1,7 +1,7 @@
 package com.example.carsharingbackend.carattributes.navigation;
 
 import com.example.carsharingbackend.common.AbstractPresenter;
-import com.example.carsharingbackend.common.AttributeService;
+import com.example.carsharingbackend.common.AttributeClient;
 import com.example.carsharingbackend.common.IModel;
 import com.example.carsharingbackend.common.IView;
 import com.vaadin.flow.component.AbstractField;
@@ -19,13 +19,13 @@ import java.util.List;
 public class NavigationPresenter extends AbstractPresenter<NavigationPresenter.NavigationModel, NavigationPresenter.NavigationView> {
 
     public interface NavigationModel extends IModel {
-        List<AttributeService> getLinks();
+        List<AttributeClient> getLinks();
     }
 
     public interface NavigationView extends IView {
-        void setItems(List<AttributeService> links);
+        void setItems(List<AttributeClient> links);
 
-        Registration addValueChangeListener(HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<ListBox<AttributeService>, AttributeService>>  listener);
+        Registration addValueChangeListener(HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<ListBox<AttributeClient>, AttributeClient>>  listener);
     }
 
     public NavigationPresenter(NavigationModel model, NavigationView view) {
@@ -38,7 +38,7 @@ public class NavigationPresenter extends AbstractPresenter<NavigationPresenter.N
         view.setItems(model.getLinks());
     }
 
-    public void addValueChangeListener(HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<ListBox<AttributeService>, AttributeService>>  listener) {
+    public void addValueChangeListener(HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<ListBox<AttributeClient>, AttributeClient>>  listener) {
         view.addValueChangeListener(listener);
     }
 

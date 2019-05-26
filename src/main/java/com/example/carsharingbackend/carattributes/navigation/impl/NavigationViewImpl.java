@@ -1,7 +1,7 @@
 package com.example.carsharingbackend.carattributes.navigation.impl;
 
-import com.example.carsharingbackend.common.AttributeService;
 import com.example.carsharingbackend.carattributes.navigation.NavigationPresenter;
+import com.example.carsharingbackend.common.AttributeClient;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasValue;
@@ -16,7 +16,7 @@ import java.util.List;
 @SpringComponent
 @UIScope
 public class NavigationViewImpl extends VerticalLayout implements NavigationPresenter.NavigationView {
-    private ListBox<AttributeService> listOfLinks = new ListBox<>();
+    private ListBox<AttributeClient> listOfLinks = new ListBox<>();
 
 
     public NavigationViewImpl() {
@@ -32,12 +32,12 @@ public class NavigationViewImpl extends VerticalLayout implements NavigationPres
 
 
     @Override
-    public void setItems(List<AttributeService> links) {
+    public void setItems(List<AttributeClient> links) {
         listOfLinks.setItems(links);
     }
 
     @Override
-    public Registration addValueChangeListener(HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<ListBox<AttributeService>, AttributeService>> listener) {
+    public Registration addValueChangeListener(HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<ListBox<AttributeClient>, AttributeClient>> listener) {
 
         return listOfLinks.addValueChangeListener(listener);
     }

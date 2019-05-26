@@ -1,9 +1,9 @@
 package com.example.carsharingbackend;
 
-import com.example.carsharingbackend.entity.carinfo.Car;
-import com.example.carsharingbackend.entity.carinfo.Firm;
-import com.example.carsharingbackend.entity.carinfo.Transmission;
-import com.example.carsharingbackend.entity.carinfo.Type;
+import com.example.carsharingbackend.entity.carinfo.CarEntity;
+import com.example.carsharingbackend.entity.carinfo.FirmEntity;
+import com.example.carsharingbackend.entity.carinfo.TransmissionEntity;
+import com.example.carsharingbackend.entity.carinfo.TypeEntity;
 import com.example.carsharingbackend.repositories.CarRepository;
 import com.example.carsharingbackend.repositories.NamedBeanRepository;
 import com.example.carsharingbackend.repositories.TransmissionRepository;
@@ -14,11 +14,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 @SpringBootApplication
 public class CarSharingBackendApplication {
@@ -31,24 +26,24 @@ public class CarSharingBackendApplication {
 
 
     @Bean
-    public CommandLineRunner loadData(CarRepository carRepository, NamedBeanRepository<Firm> firmRepository, TypeRepository typeRepository, TransmissionRepository transmissionRepository) {
+    public CommandLineRunner loadData(CarRepository carRepository, NamedBeanRepository<FirmEntity> firmRepository, TypeRepository typeRepository, TransmissionRepository transmissionRepository) {
         return (args) -> {
 
-            firmRepository.save(new Firm("Mazda"));
-            firmRepository.save(new Firm("Nissan"));
-            firmRepository.save(new Firm("BMW"));
+            firmRepository.save(new FirmEntity("Mazda"));
+            firmRepository.save(new FirmEntity("Nissan"));
+            firmRepository.save(new FirmEntity("BMW"));
 
-            typeRepository.save(new Type("Грузовой"));
-            typeRepository.save(new Type("Легковой"));
+            typeRepository.save(new TypeEntity("Грузовой"));
+            typeRepository.save(new TypeEntity("Легковой"));
 
-            transmissionRepository.save(new Transmission("Ручная"));
-            transmissionRepository.save(new Transmission("Автомат"));
+            transmissionRepository.save(new TransmissionEntity("Ручная"));
+            transmissionRepository.save(new TransmissionEntity("Автомат"));
 
             // fetch all customers
 
-            carRepository.save(new Car("опис1", new Firm(1), new Type(1), new Transmission(1), 55));
-            carRepository.save(new Car("опис2", new Firm(2), new Type(1), new Transmission(1), 60));
-            carRepository.save(new Car("опис3", new Firm(3), new Type(1), new Transmission(1), 70));
+            carRepository.save(new CarEntity("опис1", new FirmEntity(1), new TypeEntity(1), new TransmissionEntity(1), 55));
+            carRepository.save(new CarEntity("опис2", new FirmEntity(2), new TypeEntity(1), new TransmissionEntity(1), 60));
+            carRepository.save(new CarEntity("опис3", new FirmEntity(3), new TypeEntity(1), new TransmissionEntity(1), 70));
 
 
 //            RestTemplate restTemplate = new RestTemplate();

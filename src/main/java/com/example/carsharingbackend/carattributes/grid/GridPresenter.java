@@ -4,7 +4,7 @@ import com.example.carsharingbackend.common.AbstractPresenter;
 import com.example.carsharingbackend.common.IModel;
 import com.example.carsharingbackend.common.IView;
 import com.example.carsharingbackend.entity.common.NamedBean;
-import com.example.carsharingbackend.services.NamedBeanService;
+import com.example.carsharingbackend.restClients.RestNamedBeanClient;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -21,14 +21,11 @@ import java.util.Collection;
 public class GridPresenter extends AbstractPresenter<GridPresenter.GridModel, GridPresenter.GridView> {
 
     public interface GridModel extends IModel {
-        void setService(NamedBeanService s);
+        void setRestNamedBeanClient(RestNamedBeanClient client);
 
         void delete(NamedBean bean);
 
-
         void save(NamedBean bean);
-
-        Collection<NamedBean> getAll();
 
         Collection<NamedBean> getAllStartsWith(String str);
 
@@ -62,17 +59,14 @@ public class GridPresenter extends AbstractPresenter<GridPresenter.GridModel, Gr
         bind();
     }
 
-    public void updateService(NamedBeanService service) {
-        model.setService(service);
+    public void updateService(RestNamedBeanClient client) {
+        model.setRestNamedBeanClient(client);
         view.getFilter().clear();
-        view.setData(model.getAll());
+        view.setData(model.getAllStartsWith(""));
     }
 
     @Override
     protected void bind() {
-
-
-
         view.getFilter().addValueChangeListener(e -> view.setData(model.getAllStartsWith(e.getValue())));
 
         view.getAddBtn().addClickListener(e -> {
@@ -88,12 +82,12 @@ public class GridPresenter extends AbstractPresenter<GridPresenter.GridModel, Gr
 
         view.getSaveBtn().addClickListener(e -> {
             model.save(currentBean);
-            view.setData(model.getAll());
+            view.setData(model.getAllStartsWith(""));
         });
 
         view.getDeleteBtn().addClickListener(e -> {
             model.delete(currentBean);
-            view.setData(model.getAll());
+            view.setData(model.getAllStartsWith(""));
         });
     }
 

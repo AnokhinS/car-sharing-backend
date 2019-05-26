@@ -1,7 +1,7 @@
 package com.example.carsharingbackend.restcontrollers;
 
 
-import com.example.carsharingbackend.entity.carinfo.Type;
+import com.example.carsharingbackend.entity.carinfo.TypeEntity;
 import com.example.carsharingbackend.services.TypeService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,28 +17,29 @@ public class RestTypeController {
     }
 
     @GetMapping
-    public Iterable<Type> list() {
-        return service.getAllOrdered();
+    public Iterable<TypeEntity> list(@RequestParam(required = false) String startsWith) {
+        return service.list(startsWith);
     }
 
     @GetMapping("{id}")
-    public Type get(@PathVariable int id) {
+    public TypeEntity get(@PathVariable long id) {
         return service.get(id);
     }
 
     @PostMapping
-    public Type add(@RequestBody Type type) throws RuntimeException {
+    public TypeEntity add(@RequestBody TypeEntity type) throws RuntimeException {
         return service.create(type);
     }
 
-    @PutMapping
-    public Type update(@RequestBody Type type) throws RuntimeException {
+    @PutMapping("{id}")
+    public TypeEntity update(@PathVariable long id,@RequestBody TypeEntity type) {
+        type.setId(id);
         return service.update(type);
     }
 
-    @DeleteMapping
-    public void delete(@RequestBody Type object) {
-        service.delete(object);
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable long id) {
+        service.delete(id);
     }
 
 }

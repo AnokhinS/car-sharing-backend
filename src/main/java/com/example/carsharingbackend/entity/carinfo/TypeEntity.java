@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "type")
 @Data
-public class Type implements NamedBean {
+public class TypeEntity implements NamedBean {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "type_id")
@@ -19,14 +19,14 @@ public class Type implements NamedBean {
     @Column(name = "name")
     private String name;
 
-    public Type() {
+    public TypeEntity() {
     }
 
-    public Type(@Length(min = 1, message = "Поле не может быть пустым") String name) {
+    public TypeEntity(@Length(min = 1, message = "Поле не может быть пустым") String name) {
         this.name = name;
     }
 
-    public Type(int i) {
+    public TypeEntity(int i) {
         id=i;
     }
 
@@ -35,4 +35,5 @@ public class Type implements NamedBean {
     public String toString(){
         return name;
     }
+
 }

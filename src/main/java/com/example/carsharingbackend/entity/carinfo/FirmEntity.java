@@ -2,14 +2,13 @@ package com.example.carsharingbackend.entity.carinfo;
 
 import com.example.carsharingbackend.entity.common.NamedBean;
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "firm")
 @Data
-public class Firm implements NamedBean {
+public class FirmEntity implements NamedBean {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "firm_id")
@@ -18,21 +17,25 @@ public class Firm implements NamedBean {
     @Column(name = "name")
     private String name;
 
-    public Firm() {
+    public FirmEntity() {
     }
 
-    public Firm(int i){
+    public FirmEntity(long i){
         id=i;
     }
 
+    public FirmEntity(long id,String name){
+        this.id=id;
+        this.name=name;
+    }
 
-    public Firm(String name) {
+    public FirmEntity(String name) {
         this.name = name;
     }
 
     @Override
     public String toString(){
-        return name;
+        return name+"  "+id;
     }
 
 }

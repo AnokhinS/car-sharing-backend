@@ -1,8 +1,8 @@
 package com.example.carsharingbackend.carattributes.navigation.impl;
 
-import com.example.carsharingbackend.common.AttributeProvider;
-import com.example.carsharingbackend.common.AttributeService;
 import com.example.carsharingbackend.carattributes.navigation.NavigationPresenter;
+import com.example.carsharingbackend.common.AttributeClient;
+import com.example.carsharingbackend.common.AttributeProvider;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class NavigationModelImpl implements NavigationPresenter.NavigationModel 
     }
 
     @Override
-    public List<AttributeService> getLinks() {
+    public List<AttributeClient> getLinks() {
         return provider.getAttributes();
     }
 }
