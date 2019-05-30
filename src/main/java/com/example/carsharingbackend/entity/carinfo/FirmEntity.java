@@ -4,11 +4,12 @@ import com.example.carsharingbackend.entity.common.NamedBean;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "firm")
 @Data
-public class FirmEntity implements NamedBean {
+public class FirmEntity implements NamedBean, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "firm_id")

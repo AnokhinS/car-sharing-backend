@@ -5,11 +5,12 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "type")
 @Data
-public class TypeEntity implements NamedBean {
+public class TypeEntity implements NamedBean, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "type_id")

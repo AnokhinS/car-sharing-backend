@@ -1,6 +1,6 @@
-package com.example.carsharingbackend.carattributes.main.impl;
+package com.example.carsharingbackend.vaadinviews.admin.carattributes.main.impl;
 
-import com.example.carsharingbackend.carattributes.main.MainPresenter;
+import com.example.carsharingbackend.vaadinviews.admin.carattributes.main.CarAttributePresenter;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.spring.annotation.SpringComponent;
@@ -8,8 +8,8 @@ import com.vaadin.flow.spring.annotation.UIScope;
 
 @SpringComponent
 @UIScope
-public class MainViewImpl extends SplitLayout implements MainPresenter.MainView {
-    public MainViewImpl() {
+public class CarAttributeViewImpl extends SplitLayout implements CarAttributePresenter.CarAttributeView {
+    public CarAttributeViewImpl() {
         setSizeFull();
     }
 

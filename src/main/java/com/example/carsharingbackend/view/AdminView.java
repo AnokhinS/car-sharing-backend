@@ -2,84 +2,60 @@ package com.example.carsharingbackend.view;
 
 
 
-import com.example.carsharingbackend.carattributes.grid.GridPresenter;
-import com.example.carsharingbackend.services.NamedBeanService;
+import com.example.carsharingbackend.vaadinviews.admin.carattributes.main.CarAttributePresenter;
+import com.example.carsharingbackend.vaadinviews.admin.cars.main.CarPresenter;
+import com.example.carsharingbackend.vaadinviews.admin.users.UserPresenter;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.router.Route;
 
 @Route("admin")
+
 public class AdminView extends VerticalLayout {
-
-    private GridPresenter.GridModel model;
-    //private ListBox list = new NavigationViewImpl();
-    private MainView mainView;
-    private NamedBeanService currentService;
-
-    private Button newContact = new Button("Add contact");
-    private Button search = new Button("Search");
-    private Button share = new Button("Share");
+    private Button attBtn = new Button("Параметры");
+    private Button carsBtn = new Button("Автомобили");
+    private Button usersBtn = new Button("Пользователи");
     private Button help = new Button("Help");
 
+    private CarAttributePresenter attributePresenter;
+    private CarPresenter carPresenter;
+    private UserPresenter userPresenter;
+    Component currentComponent = new VerticalLayout();
 
-    public AdminView(GridPresenter.GridModel model, MainView view) {
-        this.model = model;
-        this.mainView = view;
+    public AdminView(CarAttributePresenter attributePresenter, CarPresenter carPresenter, UserPresenter userPresenter) {
+        this.attributePresenter = attributePresenter;
+        this.carPresenter = carPresenter;
+        this.userPresenter = userPresenter;
         buildMainLayout();
-//        mainView.getGrid().setItems(model.getFirmService().getAllOrdered());
-        mainView.getFilter().addValueChangeListener(e->{
-            getGrid().setItems(currentService.getAllStartsWith(e.getValue()));
+
+        add(currentComponent);
+        attBtn.addClickListener(e->{
+            replace(currentComponent,attributePresenter.getView());
+            currentComponent=attributePresenter.getView();
         });
-    }
-
-
-
-
-    private SplitLayout createMainSplit() {
-        SplitLayout horizontalSplit = new SplitLayout();
-        horizontalSplit.setSizeFull();
-        horizontalSplit.setSplitterPosition(400);
-
-//        list.addValueChangeListener(event -> {
-//            switch (event.getValue().toString()) {
-//                case NavigationViewImpl.FIRMS:
-//                    currentService = model.getFirmService();
-//                    getGrid().setItems(currentService.getAllOrdered());
-//                    break;
-//                case NavigationViewImpl.TYPES:
-//                    currentService = model.getTypeService();
-//                    getGrid().setItems(currentService.getAllOrdered());
-//                    break;
-//                case NavigationViewImpl.TRANSMISSIONS:
-//                    currentService = model.getTransmissionService();
-//                    getGrid().setItems(currentService.getAllOrdered());
-//                    break;
-//            }
-//        });
-    //    horizontalSplit.addToPrimary(list);
-        horizontalSplit.addToSecondary(mainView);
-        return horizontalSplit;
-    }
-
-    private Grid getGrid() {
-        return mainView.getGrid();
+        carsBtn.addClickListener(e->{
+            replace(currentComponent,carPresenter.getView());
+            currentComponent=carPresenter.getView();
+        });
+        usersBtn.addClickListener(e->{
+            replace(currentComponent,userPresenter.getView());
+            currentComponent=userPresenter.getView();
+        });
     }
 
     private void buildMainLayout() {
         setSizeFull();
         add(createToolbar());
-        add(createMainSplit());
     }
 
 
     public HorizontalLayout createToolbar() {
         HorizontalLayout lo = new HorizontalLayout();
-        lo.add(newContact);
-        lo.add(search);
-        lo.add(share);
+        lo.add(attBtn);
+        lo.add(carsBtn);
+        lo.add(usersBtn);
         lo.add(help);
         return lo;
     }

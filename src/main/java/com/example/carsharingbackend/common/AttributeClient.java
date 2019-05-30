@@ -1,7 +1,8 @@
 package com.example.carsharingbackend.common;
 
-import com.example.carsharingbackend.restClients.RestNamedBeanClient;
+import com.example.carsharingbackend.entity.common.NamedBean;
+import com.example.carsharingbackend.restClients.RestClient;
 
 public interface AttributeClient {
-    RestNamedBeanClient getClient();
+    RestClient<NamedBean> getClient();
 }

@@ -4,17 +4,13 @@ package com.example.carsharingbackend.restcontrollers;
 import com.example.carsharingbackend.entity.carinfo.CarEntity;
 import com.example.carsharingbackend.exceptions.ObjectNotFoundException;
 import com.example.carsharingbackend.services.CarService;
-import com.example.carsharingbackend.specifications.CarFilter;
 import com.example.carsharingbackend.specifications.CarSpecificationsBuilder;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 @RestController
@@ -30,24 +26,34 @@ public class RestCarController {
 
     @GetMapping
     public Collection<CarEntity> list(@RequestParam(value = "costFrom", required = false) String costFrom, @RequestParam(value = "costTo", required = false) String costTo,
-                                      @RequestParam(value = "firms", required = false) String firms) {
+                                      @RequestParam(value = "firms", required = false) String firms, @RequestParam(value = "types", required = false) String types,
+                                      @RequestParam(value = "transmissions", required = false) String transmissions) {
         CarSpecificationsBuilder builder = new CarSpecificationsBuilder();
-        if(costFrom!=null){
-            builder.with("costPerDay", ">", costFrom,false);
-        }
-        if(costTo!=null){
-            builder.with("costPerDay", "<", costTo,false);
-        }
-        if(firms!=null){
-            List<String> flist= Arrays.asList(firms.split(","));
-                        flist.forEach(e->{
-                            builder.with("firm.name", "=", e,true);
+        builder.with("costPerDay", ">", costFrom,false);
+        builder.with("costPerDay", "<", costTo,false);
+
+        if(firms!=null) {
+            List<String> flist = Arrays.asList(firms.split(","));
+            flist.forEach(e -> {
+                builder.with("firm.firstName", "=", e, true);
             });
         }
-
+        if(types!=null) {
+            List<String> tlist = Arrays.asList(types.split(","));
+            tlist.forEach(e -> {
+                builder.with("type.firstName", "=", e, true);
+            });
+        }
+        if(transmissions!=null){
+            List<String> trlist = Arrays.asList(transmissions.split(","));
+            trlist.forEach(e -> {
+                builder.with("transmission.firstName", "=", e, true);
+            });
+        }
         Specification<CarEntity> spec = builder.build();
         return service.findAll(spec);
     }
+
 
     @GetMapping("{id}")
     public CarEntity get(@PathVariable long id) {
@@ -59,25 +65,24 @@ public class RestCarController {
         return service.create(car);
     }
 
-    @PutMapping
-    public CarEntity update(@RequestBody CarEntity car) {
-        CarEntity found = service.get(car.getId());
+    @PutMapping("{id}")
+    public void update(@PathVariable long id, @RequestBody CarEntity car) {
+        CarEntity found = service.get(id);
         if (found == null)
             throw new ObjectNotFoundException();
         try {
-            return service.create(car);
+            service.update(car);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
 
-    @DeleteMapping
-    public void delete(@RequestBody CarEntity object) {
-        CarEntity found = service.get(object.getId());
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable long id) {
+        CarEntity found = service.get(id);
         if (found == null)
             throw new ObjectNotFoundException();
-        service.delete(object);
+        service.delete(id);
     }
 
 }

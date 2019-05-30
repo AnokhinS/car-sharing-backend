@@ -1,4 +1,4 @@
-package com.example.carsharingbackend.common;
+package com.example.carsharingbackend.common.mvp;
 
 import com.vaadin.flow.component.Component;
 

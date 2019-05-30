@@ -1,6 +1,6 @@
-package com.example.carsharingbackend.carattributes.grid.impl;
+package com.example.carsharingbackend.vaadinviews.admin.carattributes.grid.impl;
 
-import com.example.carsharingbackend.carattributes.grid.GridPresenter;
+import com.example.carsharingbackend.vaadinviews.admin.carattributes.grid.CarAttributeGridPresenter;
 import com.example.carsharingbackend.entity.common.NamedBean;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
@@ -24,20 +24,20 @@ import java.util.Collection;
 
 @SpringComponent
 @UIScope
-public class GridViewImpl extends VerticalLayout implements GridPresenter.GridView {
+public class CarAttributeGridViewImpl extends VerticalLayout implements CarAttributeGridPresenter.GridView {
     @Getter
     private TextField filter;
     @Getter
     private Button addNewBtn;
     private Grid<NamedBean> grid;
-    private EditorViewImpl editor;
+    private Editor editor;
     @Getter
     private Button saveBtn = new Button("Save", VaadinIcon.CHECK.create());
     @Getter
     private Button deleteBtn = new Button("Delete", VaadinIcon.TRASH.create());
 
-    public GridViewImpl() {
-        editor = new EditorViewImpl();
+    public CarAttributeGridViewImpl() {
+        editor = new Editor();
         filter = new TextField();
         filter.setValueChangeMode(ValueChangeMode.EAGER);
         filter.setPlaceholder("Фильтрация по названию");
@@ -80,7 +80,7 @@ public class GridViewImpl extends VerticalLayout implements GridPresenter.GridVi
 
 
 
-    private class EditorViewImpl extends VerticalLayout implements KeyNotifier {
+    private class Editor extends VerticalLayout implements KeyNotifier {
         private Binder<NamedBean> binder = new Binder<>();
         private Label label = new Label("Редактирование...");
         private TextField name = new TextField("Название", "Введите название нового объекта");
@@ -90,7 +90,7 @@ public class GridViewImpl extends VerticalLayout implements GridPresenter.GridVi
 
         private NamedBean bean;
 
-        public EditorViewImpl() {
+        public Editor() {
             name.setWidth("300px");
             name.setValueChangeMode(ValueChangeMode.EAGER);
             saveBtn.getElement().getThemeList().add("primary");
@@ -106,7 +106,6 @@ public class GridViewImpl extends VerticalLayout implements GridPresenter.GridVi
             add(label, name, actions);
             setSpacing(true);
             setVisible(false);
-
         }
 
         public void edit(NamedBean bean) {

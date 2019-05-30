@@ -1,7 +1,8 @@
 package com.example.carsharingbackend.common;
 
+import com.example.carsharingbackend.entity.common.NamedBean;
+import com.example.carsharingbackend.restClients.RestClient;
 import com.example.carsharingbackend.restClients.RestFirmClient;
-import com.example.carsharingbackend.restClients.RestNamedBeanClient;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +14,7 @@ public class FirmAttributeClient implements AttributeClient {
     }
 
     @Override
-    public RestNamedBeanClient getClient() {
+    public RestClient getClient() {
         return client;
     }
 

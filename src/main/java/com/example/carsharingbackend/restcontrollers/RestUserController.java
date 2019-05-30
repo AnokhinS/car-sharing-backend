@@ -19,8 +19,8 @@ public class RestUserController {
     }
 
     @GetMapping
-    public Iterable<User> list() {
-        return service.findAll();
+    public Iterable<User> list(@RequestParam(value = "startsWith", required = false) String startsWith) {
+        return service.findAll(startsWith);
     }
 
     @GetMapping("{id}")
@@ -42,25 +42,24 @@ public class RestUserController {
         throw new ObjectAlreadyExistsException();
     }
 
-    @PutMapping
-    public User update(@RequestBody User user) throws RuntimeException {
-        User found = service.get(user.getId());
+    @PutMapping("{id}")
+    public void update(@PathVariable long id, @RequestBody User user) throws RuntimeException {
+        User found = service.get(id);
         if (found == null)
             throw new ObjectNotFoundException();
         try {
-            return service.create(user);
+            service.update(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
 
-    @DeleteMapping
-    public void delete(@RequestBody User object) {
-        User found = service.get(object.getId());
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable long id) {
+        User found = service.get(id);
         if (found == null)
             throw new ObjectNotFoundException();
-        service.delete(object);
+        service.delete(id);
     }
 
 }

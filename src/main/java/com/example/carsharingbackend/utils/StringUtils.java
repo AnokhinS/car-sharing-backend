@@ -16,6 +16,9 @@ public class StringUtils {
     }
     public static String toQueryParam(Collection<String> collection){
         String result="";
+        if(collection.size()==0){
+            return null;
+        }
         for (String s:collection){
             result+=s+",";
         }

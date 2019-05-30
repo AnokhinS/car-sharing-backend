@@ -18,8 +18,11 @@ public class UserService {
         this.repository = userRep;
     }
 
-    public Iterable<User> findAll() {
-        return repository.findAll();
+    public Iterable<User> findAll(String startsWith) {
+        if(startsWith==null){
+            startsWith="";
+        }
+        return repository.findByEmailStartsWithIgnoreCaseOrderByEmail(startsWith);
     }
 
     public User get(long id) {
@@ -53,7 +56,7 @@ public class UserService {
         repository.save(user);
     }
 
-    public void delete(User user) {
-        repository.delete(get(user.getId()));
+    public void delete(long id) {
+        repository.delete(get(id));
     }
 }

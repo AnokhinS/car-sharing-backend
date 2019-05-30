@@ -1,13 +1,13 @@
-package com.example.carsharingbackend.carattributes.navigation.impl;
+package com.example.carsharingbackend.vaadinviews.admin.carattributes.navigation.impl;
 
-import com.example.carsharingbackend.carattributes.navigation.NavigationPresenter;
+import com.example.carsharingbackend.vaadinviews.admin.carattributes.navigation.NavigationPresenter;
 import com.example.carsharingbackend.common.AttributeClient;
 import com.example.carsharingbackend.common.AttributeProvider;
-import org.springframework.stereotype.Component;
+import com.vaadin.flow.spring.annotation.SpringComponent;
 
 import java.util.List;
 
-@Component
+@SpringComponent
 public class NavigationModelImpl implements NavigationPresenter.NavigationModel {
     private AttributeProvider provider;
 

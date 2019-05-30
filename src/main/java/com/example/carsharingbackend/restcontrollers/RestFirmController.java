@@ -3,7 +3,14 @@ package com.example.carsharingbackend.restcontrollers;
 
 import com.example.carsharingbackend.entity.carinfo.FirmEntity;
 import com.example.carsharingbackend.services.FirmService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 
 @RestController
@@ -16,10 +23,12 @@ public class RestFirmController {
         this.service = service;
     }
 
-    @GetMapping
-    public Iterable<FirmEntity> list(@RequestParam(required = false) String startsWith) {
+    @GetMapping(produces = "application/json; charset=UTF-8")
+    public Collection<FirmEntity> list(@RequestParam(required = false) String startsWith) {
         return service.list(startsWith);
     }
+
+
 
     @GetMapping("{id}")
     public FirmEntity get(@PathVariable long id) {

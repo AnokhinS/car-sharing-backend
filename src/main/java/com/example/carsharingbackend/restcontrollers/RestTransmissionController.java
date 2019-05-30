@@ -2,8 +2,15 @@ package com.example.carsharingbackend.restcontrollers;
 
 
 import com.example.carsharingbackend.entity.carinfo.TransmissionEntity;
+import com.example.carsharingbackend.entity.carinfo.TypeEntity;
 import com.example.carsharingbackend.services.TransmissionService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 
 @RestController()
@@ -17,8 +24,7 @@ public class RestTransmissionController {
     }
 
     @GetMapping
-    public Iterable<TransmissionEntity> list(@RequestParam(required = false) String startsWith) {
-        System.out.println(startsWith);
+    public Collection<TransmissionEntity> list(@RequestParam(required = false) String startsWith) {
         return service.list(startsWith);
     }
 
@@ -33,9 +39,9 @@ public class RestTransmissionController {
     }
 
     @PutMapping("{id}")
-    public TransmissionEntity update(@PathVariable long id, @RequestBody TransmissionEntity transmission) {
+    public void update(@PathVariable long id, @RequestBody TransmissionEntity transmission) {
         transmission.setId(id);
-        return service.update(transmission);
+        service.update(transmission);
     }
 
     @DeleteMapping("{id}")

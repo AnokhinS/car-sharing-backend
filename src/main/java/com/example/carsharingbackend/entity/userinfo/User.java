@@ -16,20 +16,24 @@ public class User {
     @Column(name = "user_id")
     private long id;
 
+    @Column(name = "first_name")
     @Size(min = 2, max = 15)
-    @Pattern(regexp = "[a-zA-ZА-Яа-я]+", message = "Введите имя без пробелов")
-    @Column(name = "name")
-    private String name;
+    @Pattern(regexp = "[a-zA-ZА-Яа-я]+")
+    private String firstName;
+
+    @Column(name = "last_name")
+    @Size(min = 2, max = 15)
+    @Pattern(regexp = "[a-zA-ZА-Яа-я]+")
+    private String lastName;
 
     @Pattern(regexp = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$")
     @Column(name = "email")
     private String email;
-    @Size(min = 4, max = 20)
+
     @Column(name = "password")
+    @Size(min = 4, max = 20)
     private String password;
-    @Pattern(regexp = "^(\\+7|8)\\d{10}$", message = "Формат +7XXXXXXXXXX либо 8XXXXXXXXXX")
-    @Column(name = "phone")
-    private String phone;
+
     @Column(name = "active")
     private boolean active;
 
@@ -43,4 +47,14 @@ public class User {
 
     public User() {
     }
+
+    public User(@Size(min = 2, max = 15) @Pattern(regexp = "[a-zA-ZА-Яа-я]+") String firstName, @Size(min = 2, max = 15) @Pattern(regexp = "[a-zA-ZА-Яа-я]+") String lastName, @Pattern(regexp = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$") String email, @Size(min = 4, max = 20) String password, boolean active, Set<Role> roles) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.active = active;
+        this.roles = roles;
+    }
+
 }

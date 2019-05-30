@@ -40,8 +40,8 @@ public class CarService {
         return repository.save(object);
     }
 
-    public void delete(CarEntity object) {
-        repository.delete(get(object.getId()));
+    public void delete(long id) {
+        repository.delete(get(id));
     }
 
 }

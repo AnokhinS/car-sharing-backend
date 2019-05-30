@@ -3,7 +3,13 @@ package com.example.carsharingbackend.restcontrollers;
 
 import com.example.carsharingbackend.entity.carinfo.TypeEntity;
 import com.example.carsharingbackend.services.TypeService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 
 @RestController
@@ -16,8 +22,10 @@ public class RestTypeController {
         this.service = service;
     }
 
+
+
     @GetMapping
-    public Iterable<TypeEntity> list(@RequestParam(required = false) String startsWith) {
+    public Collection<TypeEntity> list(@RequestParam(required = false) String startsWith) {
         return service.list(startsWith);
     }
 
@@ -32,9 +40,9 @@ public class RestTypeController {
     }
 
     @PutMapping("{id}")
-    public TypeEntity update(@PathVariable long id,@RequestBody TypeEntity type) {
+    public void update(@PathVariable long id,@RequestBody TypeEntity type) {
         type.setId(id);
-        return service.update(type);
+        service.update(type);
     }
 
     @DeleteMapping("{id}")

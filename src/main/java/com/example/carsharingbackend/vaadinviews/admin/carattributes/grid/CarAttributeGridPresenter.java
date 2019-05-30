@@ -1,10 +1,10 @@
-package com.example.carsharingbackend.carattributes.grid;
+package com.example.carsharingbackend.vaadinviews.admin.carattributes.grid;
 
-import com.example.carsharingbackend.common.AbstractPresenter;
-import com.example.carsharingbackend.common.IModel;
-import com.example.carsharingbackend.common.IView;
+import com.example.carsharingbackend.common.mvp.AbstractPresenter;
+import com.example.carsharingbackend.common.mvp.IModel;
+import com.example.carsharingbackend.common.mvp.IView;
 import com.example.carsharingbackend.entity.common.NamedBean;
-import com.example.carsharingbackend.restClients.RestNamedBeanClient;
+import com.example.carsharingbackend.restClients.RestClient;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -18,12 +18,12 @@ import java.util.Collection;
 
 @SpringComponent
 @UIScope
-public class GridPresenter extends AbstractPresenter<GridPresenter.GridModel, GridPresenter.GridView> {
+public class CarAttributeGridPresenter extends AbstractPresenter<CarAttributeGridPresenter.GridModel, CarAttributeGridPresenter.GridView> {
 
     public interface GridModel extends IModel {
-        void setRestNamedBeanClient(RestNamedBeanClient client);
+        void setRestNamedBeanClient(RestClient<NamedBean> client);
 
-        void delete(NamedBean bean);
+        void delete(long id);
 
         void save(NamedBean bean);
 
@@ -54,12 +54,12 @@ public class GridPresenter extends AbstractPresenter<GridPresenter.GridModel, Gr
 
     private NamedBean currentBean;
 
-    public GridPresenter(GridModel model, GridView view) {
+    public CarAttributeGridPresenter(GridModel model, GridView view) {
         super(model, view);
         bind();
     }
 
-    public void updateService(RestNamedBeanClient client) {
+    public void updateService(RestClient<NamedBean> client) {
         model.setRestNamedBeanClient(client);
         view.getFilter().clear();
         view.setData(model.getAllStartsWith(""));
@@ -86,7 +86,7 @@ public class GridPresenter extends AbstractPresenter<GridPresenter.GridModel, Gr
         });
 
         view.getDeleteBtn().addClickListener(e -> {
-            model.delete(currentBean);
+            model.delete(currentBean.getId());
             view.setData(model.getAllStartsWith(""));
         });
     }
