@@ -1,6 +1,5 @@
 package com.example.carsharingbackend.common;
 
-import com.example.carsharingbackend.entity.common.NamedBean;
 import com.example.carsharingbackend.restClients.RestClient;
 import com.example.carsharingbackend.restClients.RestFirmClient;
 import org.springframework.stereotype.Service;

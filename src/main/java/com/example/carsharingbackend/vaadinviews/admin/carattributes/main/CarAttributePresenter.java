@@ -1,10 +1,10 @@
 package com.example.carsharingbackend.vaadinviews.admin.carattributes.main;
 
-import com.example.carsharingbackend.vaadinviews.admin.carattributes.grid.CarAttributeGridPresenter;
-import com.example.carsharingbackend.vaadinviews.admin.carattributes.navigation.NavigationPresenter;
 import com.example.carsharingbackend.common.mvp.AbstractPresenter;
 import com.example.carsharingbackend.common.mvp.IModel;
 import com.example.carsharingbackend.common.mvp.IView;
+import com.example.carsharingbackend.vaadinviews.admin.carattributes.grid.CarAttributeGridPresenter;
+import com.example.carsharingbackend.vaadinviews.admin.carattributes.navigation.NavigationPresenter;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;

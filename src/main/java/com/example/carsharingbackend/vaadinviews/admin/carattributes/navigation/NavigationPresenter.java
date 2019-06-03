@@ -1,7 +1,7 @@
 package com.example.carsharingbackend.vaadinviews.admin.carattributes.navigation;
 
-import com.example.carsharingbackend.common.mvp.AbstractPresenter;
 import com.example.carsharingbackend.common.AttributeClient;
+import com.example.carsharingbackend.common.mvp.AbstractPresenter;
 import com.example.carsharingbackend.common.mvp.IModel;
 import com.example.carsharingbackend.common.mvp.IView;
 import com.vaadin.flow.component.AbstractField;

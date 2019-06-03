@@ -14,6 +14,8 @@ public abstract class AbstractPresenter<M extends IModel, V extends IView> {
 
     protected abstract void bind();
 
-    public abstract Component getView();
+    public Component getView(){
+        return view.mainLayout();
+    }
 
 }

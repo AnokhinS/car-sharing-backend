@@ -13,6 +13,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "message_id")
     private long id;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

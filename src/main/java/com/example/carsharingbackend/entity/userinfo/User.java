@@ -42,11 +42,14 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Message> messages;
 
     public User() {
     }
+
+    public User(long id){
+        this.id=id;
+    }
+
 
     public User(@Size(min = 2, max = 15) @Pattern(regexp = "[a-zA-ZА-Яа-я]+") String firstName, @Size(min = 2, max = 15) @Pattern(regexp = "[a-zA-ZА-Яа-я]+") String lastName, @Pattern(regexp = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$") String email, @Size(min = 4, max = 20) String password, boolean active, Set<Role> roles) {
         this.firstName = firstName;

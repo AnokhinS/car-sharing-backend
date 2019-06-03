@@ -16,7 +16,7 @@ public class CarEntity implements Serializable {
     @Column(name = "description")
     private String description;
     @Column(name = "year")
-    private int year;
+    private double year;
     @ManyToOne
     @JoinColumn(name = "firm_id")
     private FirmEntity firm;
@@ -31,7 +31,12 @@ public class CarEntity implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
+
     public CarEntity() {
+    }
+
+    public CarEntity(long id){
+        this.id=id;
     }
 
     public CarEntity(String description, int year, FirmEntity firm, TypeEntity type, TransmissionEntity transmission, double costPerDay, String imageUrl) {

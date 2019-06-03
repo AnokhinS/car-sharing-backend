@@ -3,10 +3,6 @@ package com.example.carsharingbackend.restcontrollers;
 
 import com.example.carsharingbackend.entity.carinfo.TypeEntity;
 import com.example.carsharingbackend.services.TypeService;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;

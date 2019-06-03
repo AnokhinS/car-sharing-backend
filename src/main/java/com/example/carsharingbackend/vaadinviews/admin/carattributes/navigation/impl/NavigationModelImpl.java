@@ -1,8 +1,8 @@
 package com.example.carsharingbackend.vaadinviews.admin.carattributes.navigation.impl;
 
-import com.example.carsharingbackend.vaadinviews.admin.carattributes.navigation.NavigationPresenter;
 import com.example.carsharingbackend.common.AttributeClient;
 import com.example.carsharingbackend.common.AttributeProvider;
+import com.example.carsharingbackend.vaadinviews.admin.carattributes.navigation.NavigationPresenter;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 
 import java.util.List;

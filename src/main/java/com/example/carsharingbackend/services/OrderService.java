@@ -1,12 +1,12 @@
 package com.example.carsharingbackend.services;
 
 import com.example.carsharingbackend.entity.Order;
-import com.example.carsharingbackend.entity.userinfo.User;
 import com.example.carsharingbackend.exceptions.ObjectNotFoundException;
 import com.example.carsharingbackend.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collection;
+
 
 @Service
 public class OrderService {
@@ -16,31 +16,31 @@ public class OrderService {
         this.repository = repository;
     }
 
-    public List<Order> getAll() {
+    public Collection<Order> findAll() {
         return repository.findAll();
     }
 
-    public List<Order> getAllByUser(User user) {
-        return repository.findAllByUser(user);
+    public Collection<Order> findAllByUser(long id) {
+        return repository.findAllByUser(id);
     }
 
     public Order get(long id) {
         return repository.findById(id).orElseThrow(ObjectNotFoundException::new);
     }
 
-    public void delete(Order object) {
-        repository.delete(object);
+    public Order create(Order object) {
+        object.setId(0);
+        return repository.save(object);
     }
 
-    public void save(Order object) throws Exception {
+
+    public void update(Order object) {
+        get(object.getId());
         repository.save(object);
     }
 
-    public int getSum(long id) {
-        return repository.getSum(id);
+    public void delete(long id) {
+        repository.delete(get(id));
     }
 
-    public long getId() {
-        return repository.getId();
-    }
 }

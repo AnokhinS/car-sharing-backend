@@ -1,7 +1,7 @@
 package com.example.carsharingbackend.vaadinviews.admin.carattributes.grid.impl;
 
-import com.example.carsharingbackend.vaadinviews.admin.carattributes.grid.CarAttributeGridPresenter;
 import com.example.carsharingbackend.entity.common.NamedBean;
+import com.example.carsharingbackend.vaadinviews.admin.carattributes.grid.CarAttributeGridPresenter;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyNotifier;

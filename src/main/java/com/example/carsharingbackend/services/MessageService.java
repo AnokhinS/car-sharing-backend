@@ -19,7 +19,8 @@ public class MessageService {
     }
 
     public Iterable<Message> findByUser(long id) {
-        return repository.findByUserAndReadFalseOrderByDateDesc(id);
+        return null;
+    //    return repository.findByUserAndReadFalseOrderByDateDesc(id);
     }
 
     public void create(Message object) {
