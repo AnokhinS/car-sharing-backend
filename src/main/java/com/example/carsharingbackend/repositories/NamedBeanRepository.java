@@ -10,7 +10,9 @@ import java.util.Optional;
 @NoRepositoryBean
 public interface NamedBeanRepository<E extends NamedBean> extends JpaRepository<E, Long> {
     Collection<E> findByOrderByName();
+
     Collection<E> findByNameStartsWithIgnoreCaseOrderByName(String startsWith);
+
     Optional<E> findByNameIgnoreCase(String name);
 
 }

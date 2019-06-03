@@ -79,7 +79,6 @@ public class CarAttributeGridViewImpl extends VerticalLayout implements CarAttri
     }
 
 
-
     private class Editor extends VerticalLayout implements KeyNotifier {
         private Binder<NamedBean> binder = new Binder<>();
         private Label label = new Label("Редактирование...");

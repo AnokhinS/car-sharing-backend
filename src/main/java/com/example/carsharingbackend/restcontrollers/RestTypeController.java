@@ -19,7 +19,6 @@ public class RestTypeController {
     }
 
 
-
     @GetMapping
     public Collection<TypeEntity> list(@RequestParam(required = false) String startsWith) {
         return service.list(startsWith);
@@ -36,7 +35,7 @@ public class RestTypeController {
     }
 
     @PutMapping("{id}")
-    public void update(@PathVariable long id,@RequestBody TypeEntity type) {
+    public void update(@PathVariable long id, @RequestBody TypeEntity type) {
         type.setId(id);
         service.update(type);
     }

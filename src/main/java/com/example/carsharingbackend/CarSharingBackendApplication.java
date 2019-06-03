@@ -22,7 +22,6 @@ import java.util.HashSet;
 public class CarSharingBackendApplication {
 
 
-
     private static final Logger log = LoggerFactory.getLogger(CarSharingBackendApplication.class);
 
     public static void main(String[] args) {
@@ -57,17 +56,17 @@ public class CarSharingBackendApplication {
             HashSet<Role> adminRole = new HashSet<>();
             adminRole.add(Role.ADMIN);
 
-            userRepository.save(new User("Сергей", "Анохин","testmail@mail.ru","sdasdadas221",true,userRole));
-            userRepository.save(new User("Сергей", "Анохин","workout@mail.ru","sdasdadas221",true,userRole));
-            userRepository.save(new User("Сергей", "Анохин","meal@mail.ru","sdasdadas221",true,adminRole));
+            userRepository.save(new User("Сергей", "Анохин", "testmail@mail.ru", "sdasdadas221", true, userRole));
+            userRepository.save(new User("Сергей", "Анохин", "workout@mail.ru", "sdasdadas221", true, userRole));
+            userRepository.save(new User("Сергей", "Анохин", "meal@mail.ru", "sdasdadas221", true, adminRole));
 
 
-            User user= userRepository.findById(1l).get();
-            CarEntity carEntity=carRepository.findById(1l).get();
+            User user = userRepository.findById(1l).get();
+            CarEntity carEntity = carRepository.findById(1l).get();
 
-            orderRepository.save(new Order(user, carEntity,LocalDate.of(2019,5,31),LocalDate.of(2019,6,10)));
-            orderRepository.save(new Order(new User(1), new CarEntity(2),LocalDate.of(2019,5,31),LocalDate.of(2019,6,15)));
-            orderRepository.save(new Order(new User(1), new CarEntity(3),LocalDate.of(2019,5,31),LocalDate.of(2019,6,20)));
+            orderRepository.save(new Order(user, carEntity, LocalDate.of(2019, 5, 31), LocalDate.of(2019, 6, 10)));
+            orderRepository.save(new Order(new User(1), new CarEntity(2), LocalDate.of(2019, 5, 31), LocalDate.of(2019, 6, 15)));
+            orderRepository.save(new Order(new User(1), new CarEntity(3), LocalDate.of(2019, 5, 31), LocalDate.of(2019, 6, 20)));
 
         };
 

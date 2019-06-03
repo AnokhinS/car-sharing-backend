@@ -35,8 +35,8 @@ public class CarEntity implements Serializable {
     public CarEntity() {
     }
 
-    public CarEntity(long id){
-        this.id=id;
+    public CarEntity(long id) {
+        this.id = id;
     }
 
     public CarEntity(String description, int year, FirmEntity firm, TypeEntity type, TransmissionEntity transmission, double costPerDay, String imageUrl) {

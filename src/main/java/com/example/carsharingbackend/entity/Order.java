@@ -39,6 +39,7 @@ public class Order {
     private double sum;
 
     public Order() {
+        this.creationDate = LocalDate.now();
     }
 
     public Order(User user, CarEntity car, LocalDate startDate, LocalDate endDate) {
@@ -47,6 +48,6 @@ public class Order {
         this.creationDate = LocalDate.now();
         this.startDate = startDate;
         this.endDate = endDate;
-        sum = OrderSumHelper.getSum(startDate,endDate,car.getCostPerDay());
+        sum = OrderSumHelper.getSum(startDate, endDate, car.getCostPerDay());
     }
 }

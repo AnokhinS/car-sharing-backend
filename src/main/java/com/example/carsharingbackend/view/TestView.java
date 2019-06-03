@@ -1,7 +1,6 @@
 package com.example.carsharingbackend.view;
 
 import com.example.carsharingbackend.vaadinviews.mainlayout.MainPresenter;
-import com.example.carsharingbackend.vaadinviews.registration.RegistrationPresenter;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -10,7 +9,7 @@ public class TestView extends VerticalLayout {
     MainPresenter presenter;
 
     public TestView(MainPresenter p) {
-        presenter= p;
+        presenter = p;
         add(presenter.getView());
     }
 

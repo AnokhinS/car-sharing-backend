@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http
-            .csrf().disable();
+                .csrf().disable();
 //            .authorizeRequests().antMatchers("/restapi/**").permitAll()
 //            .and()
 //            .authorizeRequests().antMatchers("/admin/**").hasAuthority("ADMIN")

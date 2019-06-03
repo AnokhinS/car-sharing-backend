@@ -21,13 +21,13 @@ public class FirmEntity implements NamedBean, Serializable {
     public FirmEntity() {
     }
 
-    public FirmEntity(long i){
-        id=i;
+    public FirmEntity(long i) {
+        id = i;
     }
 
-    public FirmEntity(long id,String name){
-        this.id=id;
-        this.name=name;
+    public FirmEntity(long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public FirmEntity(String name) {
@@ -35,7 +35,7 @@ public class FirmEntity implements NamedBean, Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 

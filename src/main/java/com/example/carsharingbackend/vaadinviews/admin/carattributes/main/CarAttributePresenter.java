@@ -42,11 +42,4 @@ public class CarAttributePresenter extends AbstractPresenter<CarAttributePresent
             gridPresenter.updateService(e.getValue().getClient());
         });
     }
-
-    @Override
-    public Component getView() {
-        return view.mainLayout();
-    }
-
-
 }

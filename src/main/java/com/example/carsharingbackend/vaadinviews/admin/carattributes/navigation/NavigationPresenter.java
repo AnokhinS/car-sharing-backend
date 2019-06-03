@@ -5,7 +5,6 @@ import com.example.carsharingbackend.common.mvp.AbstractPresenter;
 import com.example.carsharingbackend.common.mvp.IModel;
 import com.example.carsharingbackend.common.mvp.IView;
 import com.vaadin.flow.component.AbstractField;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.listbox.ListBox;
 import com.vaadin.flow.shared.Registration;
@@ -25,7 +24,7 @@ public class NavigationPresenter extends AbstractPresenter<NavigationPresenter.N
     public interface NavigationView extends IView {
         void setItems(List<AttributeClient> links);
 
-        Registration addValueChangeListener(HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<ListBox<AttributeClient>, AttributeClient>>  listener);
+        Registration addValueChangeListener(HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<ListBox<AttributeClient>, AttributeClient>> listener);
     }
 
     public NavigationPresenter(NavigationModel model, NavigationView view) {
@@ -38,12 +37,7 @@ public class NavigationPresenter extends AbstractPresenter<NavigationPresenter.N
         view.setItems(model.getLinks());
     }
 
-    public void addValueChangeListener(HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<ListBox<AttributeClient>, AttributeClient>>  listener) {
+    public void addValueChangeListener(HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<ListBox<AttributeClient>, AttributeClient>> listener) {
         view.addValueChangeListener(listener);
-    }
-
-
-    public Component getView() {
-        return view.mainLayout();
     }
 }

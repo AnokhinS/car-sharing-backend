@@ -38,7 +38,7 @@ public class CarAttributeGridModelImpl implements CarAttributeGridPresenter.Grid
 
     @Override
     public void setRestNamedBeanClient(RestClient<NamedBean> client) {
-        this.client=client;
+        this.client = client;
     }
 
 }

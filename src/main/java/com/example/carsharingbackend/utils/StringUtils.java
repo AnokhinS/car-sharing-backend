@@ -9,19 +9,20 @@ public class StringUtils {
         return cap;
     }
 
-    public static Collection<String> toStringCollection(Collection collection){
-        ArrayList<String> result=new ArrayList<>();
-        collection.forEach(e->result.add(e.toString()));
+    public static Collection<String> toStringCollection(Collection collection) {
+        ArrayList<String> result = new ArrayList<>();
+        collection.forEach(e -> result.add(e.toString()));
         return result;
     }
-    public static String toQueryParam(Collection<String> collection){
-        String result="";
-        if(collection.size()==0){
+
+    public static String toQueryParam(Collection<String> collection) {
+        String result = "";
+        if (collection.size() == 0) {
             return null;
         }
-        for (String s:collection){
-            result+=s+",";
+        for (String s : collection) {
+            result += s + ",";
         }
-        return result.substring(0,result.length()-1);
+        return result.substring(0, result.length() - 1);
     }
 }

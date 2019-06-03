@@ -28,12 +28,12 @@ public class TypeEntity implements NamedBean, Serializable {
     }
 
     public TypeEntity(int i) {
-        id=i;
+        id = i;
     }
 
 
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 

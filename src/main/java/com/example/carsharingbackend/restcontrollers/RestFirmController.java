@@ -24,7 +24,6 @@ public class RestFirmController {
     }
 
 
-
     @GetMapping("{id}")
     public FirmEntity get(@PathVariable long id) {
         return service.get(id);
@@ -36,7 +35,7 @@ public class RestFirmController {
     }
 
     @PutMapping("{id}")
-    public void update(@PathVariable long id,@RequestBody FirmEntity firm) {
+    public void update(@PathVariable long id, @RequestBody FirmEntity firm) {
         firm.setId(id);
         service.update(firm);
     }

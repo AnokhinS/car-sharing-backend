@@ -27,12 +27,12 @@ public class TransmissionEntity implements NamedBean, Serializable {
     }
 
     public TransmissionEntity(int i) {
-        id=i;
+        id = i;
     }
 
 
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 

@@ -1,7 +1,6 @@
 package com.example.carsharingbackend.view;
 
 
-
 import com.example.carsharingbackend.vaadinviews.admin.carattributes.main.CarAttributePresenter;
 import com.example.carsharingbackend.vaadinviews.admin.cars.main.CarPresenter;
 import com.example.carsharingbackend.vaadinviews.admin.users.UserPresenter;
@@ -31,17 +30,17 @@ public class AdminView extends VerticalLayout {
         buildMainLayout();
 
         add(currentComponent);
-        attBtn.addClickListener(e->{
-            replace(currentComponent,attributePresenter.getView());
-            currentComponent=attributePresenter.getView();
+        attBtn.addClickListener(e -> {
+            replace(currentComponent, attributePresenter.getView());
+            currentComponent = attributePresenter.getView();
         });
-        carsBtn.addClickListener(e->{
-            replace(currentComponent,carPresenter.getView());
-            currentComponent=carPresenter.getView();
+        carsBtn.addClickListener(e -> {
+            replace(currentComponent, carPresenter.getView());
+            currentComponent = carPresenter.getView();
         });
-        usersBtn.addClickListener(e->{
-            replace(currentComponent,userPresenter.getView());
-            currentComponent=userPresenter.getView();
+        usersBtn.addClickListener(e -> {
+            replace(currentComponent, userPresenter.getView());
+            currentComponent = userPresenter.getView();
         });
     }
 

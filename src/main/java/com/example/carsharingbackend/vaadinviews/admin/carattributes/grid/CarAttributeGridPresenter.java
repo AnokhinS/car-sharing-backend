@@ -5,7 +5,6 @@ import com.example.carsharingbackend.common.mvp.IModel;
 import com.example.carsharingbackend.common.mvp.IView;
 import com.example.carsharingbackend.entity.common.NamedBean;
 import com.example.carsharingbackend.restClients.RestClient;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.textfield.TextField;
@@ -70,13 +69,13 @@ public class CarAttributeGridPresenter extends AbstractPresenter<CarAttributeGri
         view.getFilter().addValueChangeListener(e -> view.setData(model.getAllStartsWith(e.getValue())));
 
         view.getAddBtn().addClickListener(e -> {
-            currentBean=model.newBean();
+            currentBean = model.newBean();
             view.edit(currentBean);
         });
 
         view.setSingleSelectListener(e -> {
             NamedBean bean = e.getFirstSelectedItem().orElse(model.newBean());
-            currentBean=bean;
+            currentBean = bean;
             view.edit(bean);
         });
 
@@ -89,10 +88,5 @@ public class CarAttributeGridPresenter extends AbstractPresenter<CarAttributeGri
             model.delete(currentBean.getId());
             view.setData(model.getAllStartsWith(""));
         });
-    }
-
-    @Override
-    public Component getView() {
-        return view.mainLayout();
     }
 }

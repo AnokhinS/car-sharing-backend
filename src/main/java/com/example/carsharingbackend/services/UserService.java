@@ -19,8 +19,8 @@ public class UserService {
     }
 
     public Iterable<User> findAll(String startsWith) {
-        if(startsWith==null){
-            startsWith="";
+        if (startsWith == null) {
+            startsWith = "";
         }
         return repository.findByEmailStartsWithIgnoreCaseOrderByEmail(startsWith);
     }

@@ -25,7 +25,7 @@ public abstract class NamedBeanService<E extends NamedBean> {
     }
 
     public Collection<E> list(String startsWith) {
-        if(startsWith==null){
+        if (startsWith == null) {
             return getAllOrdered();
         }
         return getAllStartsWith(startsWith);

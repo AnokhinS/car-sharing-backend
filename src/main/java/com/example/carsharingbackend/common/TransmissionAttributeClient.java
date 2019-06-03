@@ -16,6 +16,7 @@ public class TransmissionAttributeClient implements AttributeClient {
     public RestClient getClient() {
         return client;
     }
+
     @Override
     public String toString() {
         return "Коробка передач";

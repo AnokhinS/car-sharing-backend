@@ -29,26 +29,26 @@ public class RestCarController {
                                       @RequestParam(value = "firms", required = false) String firms, @RequestParam(value = "types", required = false) String types,
                                       @RequestParam(value = "transmissions", required = false) String transmissions,
                                       @RequestParam(value = "yearFrom", required = false) String yearFrom, @RequestParam(value = "yearTo", required = false) String yearTo
-                                      ) {
+    ) {
         CarSpecificationsBuilder builder = new CarSpecificationsBuilder();
-        builder.with("costPerDay", ">", costFrom,false);
-        builder.with("costPerDay", "<", costTo,false);
-        builder.with("year", ">", yearFrom,false);
-        builder.with("year", "<", yearTo,false);
+        builder.with("costPerDay", ">", costFrom, false);
+        builder.with("costPerDay", "<", costTo, false);
+        builder.with("year", ">", yearFrom, false);
+        builder.with("year", "<", yearTo, false);
 
-        if(firms!=null) {
+        if (firms != null) {
             List<String> flist = Arrays.asList(firms.split(","));
             flist.forEach(e -> {
                 builder.with("firm.name", "=", e, true);
             });
         }
-        if(types!=null) {
+        if (types != null) {
             List<String> tlist = Arrays.asList(types.split(","));
             tlist.forEach(e -> {
                 builder.with("type.name", "=", e, true);
             });
         }
-        if(transmissions!=null){
+        if (transmissions != null) {
             List<String> trlist = Arrays.asList(transmissions.split(","));
             trlist.forEach(e -> {
                 builder.with("transmission.name", "=", e, true);

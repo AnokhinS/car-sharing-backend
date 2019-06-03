@@ -16,6 +16,7 @@ public class TypeAttributeClient implements AttributeClient {
     public RestClient getClient() {
         return client;
     }
+
     @Override
     public String toString() {
         return "Тип автомобиля";
