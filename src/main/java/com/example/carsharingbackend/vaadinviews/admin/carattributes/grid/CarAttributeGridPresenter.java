@@ -38,7 +38,7 @@ public class CarAttributeGridPresenter extends AbstractPresenter<CarAttributeGri
 
         TextField getFilter();
 
-        Button getAddBtn();
+        Button getAddNewBtn();
 
         Button getSaveBtn();
 
@@ -68,7 +68,7 @@ public class CarAttributeGridPresenter extends AbstractPresenter<CarAttributeGri
     protected void bind() {
         view.getFilter().addValueChangeListener(e -> view.setData(model.getAllStartsWith(e.getValue())));
 
-        view.getAddBtn().addClickListener(e -> {
+        view.getAddNewBtn().addClickListener(e -> {
             currentBean = model.newBean();
             view.edit(currentBean);
         });

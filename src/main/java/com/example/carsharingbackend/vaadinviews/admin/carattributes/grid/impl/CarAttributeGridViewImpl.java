@@ -63,11 +63,6 @@ public class CarAttributeGridViewImpl extends VerticalLayout implements CarAttri
     }
 
     @Override
-    public Button getAddBtn() {
-        return addNewBtn;
-    }
-
-    @Override
     public void edit(NamedBean bean) {
         editor.edit(bean);
     }

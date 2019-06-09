@@ -20,8 +20,8 @@ public class OrderService {
         return repository.findAll();
     }
 
-    public Collection<Order> findAllByUser(long id) {
-        return repository.findAllByUser(id);
+    public Collection<Order> findAllByUserId(long id) {
+        return repository.findAllByUserId(id);
     }
 
     public Order get(long id) {

@@ -1,7 +1,7 @@
 package com.example.carsharingbackend.security;
 
+import com.example.carsharingbackend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,10 +9,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -21,30 +20,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_PROCESSING_URL = "/login";
     private static final String LOGIN_FAILURE_URL = "/login?error=true";
     private static final String LOGIN_URL = "/login";
-    private static final String LOGOUT_SUCCESS_URL = "/admin";
+    private static final String LOGIN_SUCCESS_URL = "/profile";
+    private static final String LOGOUT_SUCCESS_URL = "/main";
+    private static final String REGISTRATION_URL = "/registration";
 
     @Autowired
-    DataSource dataSource;
-
-    @Value("${spring.queries.users-query}")
-    private String usersQuery;
-
-    @Value("${spring.queries.roles-query}")
-    private String rolesQuery;
+    private UserRepository userRepository;
 
     @Autowired
     PasswordEncoder psw;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().usersByUsernameQuery(usersQuery).authoritiesByUsernameQuery(rolesQuery)
-                .dataSource(dataSource).passwordEncoder(psw);
+        auth.userDetailsService(s -> new UserDetailsImpl(userRepository.findByEmailIgnoreCase(s).get()));
     }
 
-    @SuppressWarnings("deprecation")
     @Bean
-    public static NoOpPasswordEncoder passwordEncoder() {
-        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
@@ -52,16 +45,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http
-                .csrf().disable();
-//            .authorizeRequests().antMatchers("/restapi/**").permitAll()
-//            .and()
-//            .authorizeRequests().antMatchers("/admin/**").hasAuthority("ADMIN")
-//            .and()
-//            .formLogin().loginPage(LOGIN_URL).permitAll().loginProcessingUrl(LOGIN_PROCESSING_URL)
-//            .defaultSuccessUrl(LOGOUT_SUCCESS_URL)
-//            .failureUrl(LOGIN_FAILURE_URL)
-//            .and()
-//            .logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL);
+                .csrf().disable()
+                .formLogin().loginPage(LOGIN_URL).loginProcessingUrl(LOGIN_PROCESSING_URL)
+                .defaultSuccessUrl(LOGIN_SUCCESS_URL, true)
+                .failureUrl(LOGIN_FAILURE_URL)
+                .and()
+                .logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL);
+
+
+//        http
+//                .authorizeRequests().antMatchers(REGISTRATION_URL,LOGIN_URL).anonymous()
+//                .and()
+//                .authorizeRequests().anyRequest().authenticated();
 
     }
 

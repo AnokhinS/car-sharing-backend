@@ -38,6 +38,7 @@ public class RestFirmController {
     public void update(@PathVariable long id, @RequestBody FirmEntity firm) {
         firm.setId(id);
         service.update(firm);
+
     }
 
     @DeleteMapping("{id}")
