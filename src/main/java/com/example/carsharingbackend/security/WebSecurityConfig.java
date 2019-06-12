@@ -20,7 +20,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_PROCESSING_URL = "/login";
     private static final String LOGIN_FAILURE_URL = "/login?error=true";
     private static final String LOGIN_URL = "/login";
-    private static final String LOGIN_SUCCESS_URL = "/myprofile";
     private static final String LOGOUT_SUCCESS_URL = "/main";
     private static final String REGISTRATION_URL = "/registration";
 
@@ -46,10 +45,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .csrf().disable()
-                .authorizeRequests().antMatchers("/myprofile").authenticated()
+                .authorizeRequests().antMatchers("/myprofile","/restapi/*").authenticated()
                 .and()
                 .formLogin().loginPage(LOGIN_URL).loginProcessingUrl(LOGIN_PROCESSING_URL)
-                .defaultSuccessUrl(LOGIN_SUCCESS_URL, true)
                 .failureUrl(LOGIN_FAILURE_URL)
                 .and()
                 .logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL);
