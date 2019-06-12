@@ -1,6 +1,7 @@
 package com.example.carsharingbackend.entity;
 
 import com.example.carsharingbackend.entity.carinfo.CarEntity;
+import com.example.carsharingbackend.entity.userinfo.Role;
 import com.example.carsharingbackend.entity.userinfo.User;
 import com.example.carsharingbackend.utils.OrderSumHelper;
 import lombok.Data;
@@ -8,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -35,11 +37,17 @@ public class Order {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
+
+    @CollectionTable(name = "order_state", joinColumns = @JoinColumn(name = "order_id"))
+    @Enumerated(EnumType.STRING)
+    private OrderState state;
+
     @Column(name = "sum")
     private double sum;
 
     public Order() {
         this.creationDate = LocalDate.now();
+        this.state = OrderState.NEW;
     }
 
     public Order(User user, CarEntity car, LocalDate startDate, LocalDate endDate) {
@@ -48,6 +56,7 @@ public class Order {
         this.creationDate = LocalDate.now();
         this.startDate = startDate;
         this.endDate = endDate;
+        this.state = OrderState.NEW;
         sum = OrderSumHelper.getSum(startDate, endDate, car.getCostPerDay());
     }
 }

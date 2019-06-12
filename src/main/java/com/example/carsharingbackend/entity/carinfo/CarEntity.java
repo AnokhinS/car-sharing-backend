@@ -35,6 +35,11 @@ public class CarEntity implements Serializable {
     public CarEntity() {
     }
 
+    @Override
+    public String toString() {
+        return firm.toString()+" - " +costPerDay+" руб/день";
+    }
+
     public CarEntity(long id) {
         this.id = id;
     }
@@ -48,4 +53,5 @@ public class CarEntity implements Serializable {
         this.costPerDay = costPerDay;
         this.imageUrl = imageUrl;
     }
+
 }
