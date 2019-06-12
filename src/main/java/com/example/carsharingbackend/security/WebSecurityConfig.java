@@ -45,14 +45,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .csrf().disable()
-                .authorizeRequests().antMatchers("/myprofile","/restapi/*").authenticated()
-                .and()
                 .formLogin().loginPage(LOGIN_URL).loginProcessingUrl(LOGIN_PROCESSING_URL)
                 .failureUrl(LOGIN_FAILURE_URL)
                 .and()
                 .logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL);
-
-        http.authorizeRequests().anyRequest().permitAll();
 
 //        http
 //                .authorizeRequests().antMatchers(REGISTRATION_URL,LOGIN_URL).permitAll();

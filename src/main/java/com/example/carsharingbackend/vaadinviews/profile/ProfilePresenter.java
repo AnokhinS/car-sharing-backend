@@ -9,6 +9,7 @@ import com.example.carsharingbackend.security.Authorization;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.annotation.Secured;
 
 import javax.jws.soap.SOAPBinding;
 import java.util.Collection;
