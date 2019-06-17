@@ -16,11 +16,7 @@ public class CarPresenter extends AbstractPresenter<CarPresenter.CarModel, CarPr
     }
 
     public interface CarView extends IView {
-
-        void setFirstComponent(Component... components);
-
-        void setSecondComponent(Component... components);
-
+        void addComponents(Component... components);
     }
 
     private CarFilterPresenter filterPresenter;
@@ -38,7 +34,6 @@ public class CarPresenter extends AbstractPresenter<CarPresenter.CarModel, CarPr
         filterPresenter.addApplyClickListener(e -> {
             gridPresenter.setFilter(filterPresenter.getFilterString());
         });
-        view.setFirstComponent(filterPresenter.getView());
-        view.setSecondComponent(gridPresenter.getView());
+        view.addComponents(filterPresenter.getView(), gridPresenter.getView());
     }
 }

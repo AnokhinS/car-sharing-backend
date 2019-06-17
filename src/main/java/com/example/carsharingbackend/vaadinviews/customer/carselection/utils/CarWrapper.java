@@ -2,8 +2,7 @@ package com.example.carsharingbackend.vaadinviews.customer.carselection.utils;
 
 import com.example.carsharingbackend.entity.carinfo.CarEntity;
 import com.example.carsharingbackend.utils.ComponentBuilder;
-import com.example.carsharingbackend.vaadinviews.customer.order.OrderPresenter;
-import com.vaadin.flow.component.Component;
+import com.example.carsharingbackend.vaadinviews.customer.order.NewOrderPresenter;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -17,7 +16,7 @@ public class CarWrapper extends VerticalLayout {
 
     public CarWrapper(CarEntity car) {
         getElement().addEventListener("click", e -> {
-            OrderPresenter op = new OrderPresenter(car);
+            NewOrderPresenter op = new NewOrderPresenter(car);
             op.open();
         });
         carEntity = car;
@@ -40,6 +39,8 @@ public class CarWrapper extends VerticalLayout {
         }
 
         Image img = new Image(car.getImageUrl(), car.getFirm().toString() + "  " + car.getYear());
+        img.setWidth("256px");
+        img.setHeight("256px");
 
         HorizontalLayout info = new HorizontalLayout(img, carInfo);
 

@@ -3,10 +3,9 @@ package com.example.carsharingbackend.vaadinviews.customer.order.impl;
 
 import com.example.carsharingbackend.entity.Order;
 import com.example.carsharingbackend.entity.carinfo.CarEntity;
-import com.example.carsharingbackend.entity.userinfo.User;
 import com.example.carsharingbackend.utils.OrderSumHelper;
 import com.example.carsharingbackend.vaadinviews.customer.carselection.utils.CarWrapper;
-import com.example.carsharingbackend.vaadinviews.customer.order.OrderPresenter;
+import com.example.carsharingbackend.vaadinviews.customer.order.NewOrderPresenter;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -18,7 +17,7 @@ import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.data.binder.Binder;
 import lombok.Getter;
 
-public class OrderViewImpl extends Dialog implements OrderPresenter.OrderView {
+public class NewOrderViewImpl extends Dialog implements NewOrderPresenter.OrderView {
 
     private Binder<Order> binder;
 
@@ -32,7 +31,7 @@ public class OrderViewImpl extends Dialog implements OrderPresenter.OrderView {
     private Order order;
     private CarEntity car;
 
-    public OrderViewImpl(CarEntity car) {
+    public NewOrderViewImpl(CarEntity car) {
         this.car = car;
         order = new Order();
         sumArea = new NumberField("Стоимость аренды");

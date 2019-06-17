@@ -1,8 +1,8 @@
 package com.example.carsharingbackend.vaadinviews.admin.impl;
 
 
-import com.example.carsharingbackend.vaadinviews.admin.AdminPresenter;
 import com.example.carsharingbackend.utils.PageWrapper;
+import com.example.carsharingbackend.vaadinviews.admin.AdminPresenter;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -37,6 +37,8 @@ public class AdminViewImpl extends VerticalLayout implements AdminPresenter.Admi
 
     public HorizontalLayout createToolbar() {
         HorizontalLayout toolbar = new HorizontalLayout();
+        toolbar.setWidthFull();
+        toolbar.setAlignItems(Alignment.CENTER);
         toolbar.add(attBtn);
         toolbar.add(carsBtn);
         toolbar.add(usersBtn);

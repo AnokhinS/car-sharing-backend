@@ -19,6 +19,6 @@ public class LoginView extends VerticalLayout {
         login.setOpened(true); //
         login.setTitle("Carsharing");
         login.setDescription("Пожалуйста, авторизуйтесь");
-        getElement().appendChild(login.getElement()); //
+        add(login);
     }
 }

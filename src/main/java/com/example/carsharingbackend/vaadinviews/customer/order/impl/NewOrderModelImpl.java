@@ -3,13 +3,13 @@ package com.example.carsharingbackend.vaadinviews.customer.order.impl;
 import com.example.carsharingbackend.entity.Order;
 import com.example.carsharingbackend.restClients.RestOrderClient;
 import com.example.carsharingbackend.security.Authorization;
-import com.example.carsharingbackend.vaadinviews.customer.order.OrderPresenter;
+import com.example.carsharingbackend.vaadinviews.customer.order.NewOrderPresenter;
 
-public class OrderModelImpl implements OrderPresenter.OrderModel {
+public class NewOrderModelImpl implements NewOrderPresenter.OrderModel {
 
     private RestOrderClient client;
 
-    public OrderModelImpl() {
+    public NewOrderModelImpl() {
         this.client = new RestOrderClient();
     }
 

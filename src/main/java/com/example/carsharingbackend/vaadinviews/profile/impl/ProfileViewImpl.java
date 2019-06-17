@@ -1,33 +1,25 @@
 package com.example.carsharingbackend.vaadinviews.profile.impl;
 
-import com.example.carsharingbackend.entity.Order;
 import com.example.carsharingbackend.entity.userinfo.User;
 import com.example.carsharingbackend.utils.ComponentBuilder;
 import com.example.carsharingbackend.utils.PageWrapper;
 import com.example.carsharingbackend.vaadinviews.profile.ProfilePresenter;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
-import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.context.annotation.Scope;
-
-import java.util.Collection;
 
 @SpringComponent
 @Scope(value = "prototype")
 public class ProfileViewImpl extends HorizontalLayout implements ProfilePresenter.ProfileView {
 
     private VerticalLayout userInfo;
-    private Grid<Order> orderGrid;
+
 
     public ProfileViewImpl() {
         setSizeFull();
-        initGrid();
     }
 
 
@@ -51,18 +43,6 @@ public class ProfileViewImpl extends HorizontalLayout implements ProfilePresente
         return info;
     }
 
-    private void initGrid(){
-        orderGrid = new Grid<>();
-        orderGrid.setWidth("1000px");
-        orderGrid.addColumn(Order::getState).setHeader("Статус").setSortable(true).setWidth("50px");
-        orderGrid.addColumn(Order::getCreationDate).setHeader("Дата создания").setSortable(true);
-        orderGrid.addColumn(Order::getCar).setHeader("Автомобиль").setSortable(true);
-        orderGrid.addColumn(Order::getStartDate).setHeader("Начало пользования").setSortable(true);
-        orderGrid.addColumn(Order::getEndDate).setHeader("Конец пользования").setSortable(true);
-        orderGrid.addColumn(Order::getSum).setHeader("Общая стоимость").setSortable(true).setWidth("50px");
-    }
-
-
     @Override
     public Component mainLayout() {
         return new PageWrapper(this);
@@ -75,12 +55,9 @@ public class ProfileViewImpl extends HorizontalLayout implements ProfilePresente
     }
 
     @Override
-    public void setOrders(Collection<Order> orders) {
-        if(orders.size()==0){
-            add(new H3("Вы еще не пользовались нашими услугами"));
-            return;
-        }
-        orderGrid.setItems(orders);
-        add(orderGrid);
+    public void setOrders(Component grid) {
+        add(grid);
     }
+
+
 }

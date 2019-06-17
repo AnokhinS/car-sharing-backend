@@ -44,6 +44,8 @@ public class CarGridViewImpl extends VerticalLayout implements CarGridPresenter.
     public CarGridViewImpl() {
         editor = new Editor();
         grid = new Grid<>();
+        grid.setWidth("1000px");
+        grid.setHeight("100px");
         addNewBtn = new Button("Добавить...", VaadinIcon.PLUS.create());
 
         grid.addColumn(CarEntity::getId).setHeader("Идентификатор").setSortable(true).setWidth("80px");
@@ -113,6 +115,7 @@ public class CarGridViewImpl extends VerticalLayout implements CarGridPresenter.
         private CarEntity bean;
 
         public Editor() {
+            setHeight("500px");
             cost = new NumberField("Арендная плата (руб/сутки)");
             cost.setStep(5);
             cost.setMin(0);

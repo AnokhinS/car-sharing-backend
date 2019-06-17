@@ -5,12 +5,12 @@ import com.example.carsharingbackend.common.mvp.IModel;
 import com.example.carsharingbackend.common.mvp.IView;
 import com.example.carsharingbackend.entity.Order;
 import com.example.carsharingbackend.entity.carinfo.CarEntity;
-import com.example.carsharingbackend.restClients.RestOrderClient;
-import com.example.carsharingbackend.vaadinviews.customer.order.impl.OrderModelImpl;
-import com.example.carsharingbackend.vaadinviews.customer.order.impl.OrderViewImpl;
+import com.example.carsharingbackend.vaadinviews.customer.order.impl.NewOrderModelImpl;
+import com.example.carsharingbackend.vaadinviews.customer.order.impl.NewOrderViewImpl;
 import com.vaadin.flow.component.button.Button;
 
-public class OrderPresenter extends AbstractPresenter<OrderPresenter.OrderModel, OrderPresenter.OrderView> {
+
+public class NewOrderPresenter extends AbstractPresenter<NewOrderPresenter.OrderModel, NewOrderPresenter.OrderView> {
 
     public interface OrderModel extends IModel {
         void createOrder(Order order);
@@ -21,17 +21,21 @@ public class OrderPresenter extends AbstractPresenter<OrderPresenter.OrderModel,
 
         void open();
 
+        void close();
         Order getOrder();
     }
 
-    public OrderPresenter(CarEntity car) {
-        super(new OrderModelImpl(), new OrderViewImpl(car));
+    public NewOrderPresenter(CarEntity car) {
+        super(new NewOrderModelImpl(), new NewOrderViewImpl(car));
         bind();
     }
 
     @Override
     protected void bind() {
-        view.getSubmitBtn().addClickListener(e -> model.createOrder(view.getOrder()));
+        view.getSubmitBtn().addClickListener(e -> {
+            model.createOrder(view.getOrder());
+            view.close();
+        });
     }
 
     public void open() {
