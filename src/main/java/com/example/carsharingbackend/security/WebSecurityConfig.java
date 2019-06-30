@@ -19,7 +19,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_FAILURE_URL = "/login?error=true";
     private static final String LOGIN_URL = "/login";
     private static final String LOGOUT_SUCCESS_URL = "/main";
-    private static final String REGISTRATION_URL = "/registration";
 
     @Autowired
     private UserRepository userRepository;
@@ -49,46 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL);
 
-//        http
-//                .authorizeRequests().antMatchers(REGISTRATION_URL,LOGIN_URL).permitAll();
-//                .and()
-//                .authorizeRequests().anyRequest().authenticated();
-
     }
 
 
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers(
-//                // Vaadin Flow static resources
-//                "/VAADIN/**",
-//
-//                // the standard favicon URI
-//                "/favicon.ico",
-//
-//                // the robots exclusion standard
-//                "/robots.txt",
-//
-//                // web application manifest
-//                "/manifest.webmanifest",
-//                "/sw.js",
-//                "/offline-page.html",
-//
-//                // icons and images
-//                "/icons/**",
-//                "/images/**",
-//
-//                // (development mode) static resources
-//                "/frontend/**",
-//
-//                // (development mode) webjars
-//                "/webjars/**",
-//
-//                // (development mode) H2 debugging console
-//                "/h2-console/**",
-//
-//                // (production mode) static resources
-//                "/frontend-es5/**", "/frontend-es6/**");
-//    }
 
 }

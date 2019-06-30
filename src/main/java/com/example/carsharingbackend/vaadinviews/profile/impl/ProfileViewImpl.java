@@ -16,17 +16,17 @@ import org.springframework.context.annotation.Scope;
 public class ProfileViewImpl extends HorizontalLayout implements ProfilePresenter.ProfileView {
 
     private VerticalLayout userInfo;
-
+    private User user;
 
     public ProfileViewImpl() {
         setSizeFull();
     }
 
 
-
     private VerticalLayout getUserInfo(User user){
         VerticalLayout info = new VerticalLayout();
         info.setWidth("300px");
+        info.getStyle().set("margin-top", "100px");
         Label[] labels = {new Label("Имя"),new Label("Фамилия"),new Label("Email"),new Label("Роли")};
         Label[] inf = {new Label(user.getFirstName()),new Label(user.getLastName()),new Label(user.getEmail()),new Label(user.getRoles().toString())};
 
@@ -38,8 +38,6 @@ public class ProfileViewImpl extends HorizontalLayout implements ProfilePresente
             l2.setWidth("200px");
             info.add(ComponentBuilder.toHorizontal(l1,l2));
         }
-
-
         return info;
     }
 
@@ -50,13 +48,14 @@ public class ProfileViewImpl extends HorizontalLayout implements ProfilePresente
 
     @Override
     public void setUser(User user) {
+        this.user = user;
         userInfo = getUserInfo(user);
         add(userInfo);
     }
 
     @Override
-    public void setOrders(Component grid) {
-        add(grid);
+    public void setContent(Component content) {
+        add(content);
     }
 
 

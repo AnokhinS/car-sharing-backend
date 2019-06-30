@@ -4,13 +4,9 @@ package com.example.carsharingbackend.restcontrollers;
 import com.example.carsharingbackend.entity.carinfo.CarEntity;
 import com.example.carsharingbackend.exceptions.ObjectNotFoundException;
 import com.example.carsharingbackend.services.CarService;
-import com.example.carsharingbackend.specifications.CarSpecificationsBuilder;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 
 @RestController
@@ -30,32 +26,9 @@ public class RestCarController {
                                       @RequestParam(value = "transmissions", required = false) String transmissions,
                                       @RequestParam(value = "yearFrom", required = false) String yearFrom, @RequestParam(value = "yearTo", required = false) String yearTo
     ) {
-        CarSpecificationsBuilder builder = new CarSpecificationsBuilder();
-        builder.with("costPerDay", ">", costFrom, false);
-        builder.with("costPerDay", "<", costTo, false);
-        builder.with("year", ">", yearFrom, false);
-        builder.with("year", "<", yearTo, false);
 
-        if (firms != null) {
-            List<String> flist = Arrays.asList(firms.split(","));
-            flist.forEach(e -> {
-                builder.with("firm.name", "=", e, true);
-            });
-        }
-        if (types != null) {
-            List<String> tlist = Arrays.asList(types.split(","));
-            tlist.forEach(e -> {
-                builder.with("type.name", "=", e, true);
-            });
-        }
-        if (transmissions != null) {
-            List<String> trlist = Arrays.asList(transmissions.split(","));
-            trlist.forEach(e -> {
-                builder.with("transmission.name", "=", e, true);
-            });
-        }
-        Specification<CarEntity> spec = builder.build();
-        return service.findAll(spec);
+        return service.findAll(costFrom, costTo, firms, types,
+                transmissions, yearFrom, yearTo);
     }
 
 

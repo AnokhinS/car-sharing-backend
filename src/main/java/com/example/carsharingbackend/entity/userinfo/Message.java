@@ -3,7 +3,7 @@ package com.example.carsharingbackend.entity.userinfo;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "message")
@@ -22,8 +22,15 @@ public class Message {
 
     private boolean read;
 
-    private Timestamp date;
+    private LocalDate date;
 
     public Message() {
+    }
+
+    public Message(User user, String text) {
+        this.user = user;
+        this.text = text;
+        read = false;
+        date = LocalDate.now();
     }
 }

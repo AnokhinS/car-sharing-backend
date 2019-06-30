@@ -5,6 +5,7 @@ import com.example.carsharingbackend.entity.carinfo.CarEntity;
 import com.example.carsharingbackend.entity.carinfo.FirmEntity;
 import com.example.carsharingbackend.entity.carinfo.TransmissionEntity;
 import com.example.carsharingbackend.entity.carinfo.TypeEntity;
+import com.example.carsharingbackend.entity.userinfo.Message;
 import com.example.carsharingbackend.entity.userinfo.Role;
 import com.example.carsharingbackend.entity.userinfo.User;
 import com.example.carsharingbackend.repositories.*;
@@ -31,7 +32,8 @@ public class CarSharingBackendApplication {
 
     @Bean
     public CommandLineRunner loadData(CarRepository carRepository, NamedBeanRepository<FirmEntity> firmRepository, OrderRepository orderRepository,
-                                      TypeRepository typeRepository, TransmissionRepository transmissionRepository, UserRepository userRepository, PasswordEncoder encoder) {
+                                      TypeRepository typeRepository, TransmissionRepository transmissionRepository, UserRepository userRepository, PasswordEncoder encoder,
+                                      MessageRepository messageRepository) {
         return (args) -> {
 
             firmRepository.save(new FirmEntity("Mazda"));
@@ -67,8 +69,13 @@ public class CarSharingBackendApplication {
             CarEntity carEntity3 = carRepository.findById(3l).get();
 
             orderRepository.save(new Order(user, carEntity, LocalDate.of(2019, 6, 30), LocalDate.of(2019, 7, 10)));
-            orderRepository.save(new Order(new User(1), carEntity2, LocalDate.of(2019, 6, 30), LocalDate.of(2019, 7, 15)));
-            orderRepository.save(new Order(new User(1), carEntity3, LocalDate.of(2019, 6, 30), LocalDate.of(2019, 7, 20)));
+            orderRepository.save(new Order(user, carEntity2, LocalDate.of(2019, 6, 30), LocalDate.of(2019, 7, 15)));
+            orderRepository.save(new Order(user, carEntity3, LocalDate.of(2019, 6, 30), LocalDate.of(2019, 7, 20)));
+
+
+            messageRepository.save(new Message(user, "Автомобиль " + carEntity + " успешно арендован"));
+            messageRepository.save(new Message(user, "Автомобиль " + carEntity2 + " успешно арендован"));
+            messageRepository.save(new Message(user, "Автомобиль " + carEntity3 + " успешно арендован"));
 
         };
 
